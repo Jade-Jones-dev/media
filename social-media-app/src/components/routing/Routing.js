@@ -27,11 +27,11 @@ const Routing = () => {
             <Route path='/signup' element={<Signup />} />
             <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/logout' element={<Logout/>}/>
-            <Route element={<PrivateRoute  />}>
+            {/* <Route element={<PrivateRoute  />}>
                 <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/admindashboard' element={<AdminDashboard/>}/>
             <Route path ='/logout' element={<Logout/>}/>
-            </Route>
+            </Route> */}
         </Routes>
     );
 };
