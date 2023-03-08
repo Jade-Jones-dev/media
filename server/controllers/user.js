@@ -38,10 +38,10 @@ exports.signup = (req, res, next) => {
 		});
 	} else {
 		bcrypt.hash(req.body.password, 10).then((hash) => {
-			const user = {email: req.body.email, password: hash, name: req.body.name};
+			const user = {email: req.body.email, password: hash, name: req.body.name, isAdmin: req.body.isAdmin};
 			User.create(user)
 				.then((data) => {
-					res.send({message: "Your account has been created"});
+					res.send(user);
 				})
 				.catch((error) => res.status(400).json({error}))
 				.catch((error) => res.status(500).json({error}));
