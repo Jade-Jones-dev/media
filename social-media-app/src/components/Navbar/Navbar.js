@@ -1,30 +1,44 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import './Navbar.css'
-
+import React, {useState, useEffect} from "react";
+import {NavLink} from "react-router-dom";
+import "./Navbar.css";
 
 const NavBar = () => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink exact to="/" activeClassName="active" style={{textDecoration: 'none', color:'white'}}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup" activeClassName="active" style={{textDecoration: 'none', color: 'white'}}>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" activeClassName="active" style={{textDecoration: 'none', color: 'white'}}>
-            Login
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    const token = (localStorage.getItem('token'));
+    if (token) {
+     setUser(true);
+    }
+  }, []);
+
+	return (
+		<nav className='navbar'>
+			<NavLink to='/' className='navlink'>Home</NavLink>
+			{!user && (
+				<>
+					<NavLink to='/login' className='navlink'>Login</NavLink>
+					<NavLink to='/signup' className='navlink'>Signup</NavLink>
+				</>
+			)}
+			{user && (
+				<>
+					<NavLink to='/dashboard' className='navlink'>Dashboard</NavLink>
+          <NavLink to='/logout' className='navlink'> Logout</NavLink>
+				</>
+			)}
+		</nav>
+
+		// <nav className='navbar'>
+		//         <NavLink className='navlink' to='/'>Home</NavLink>
+
+		//             <>
+		//                 <NavLink className='navlink'  to='/login'>Login</NavLink>
+		//                 <NavLink className='navlink'  to='/signup'>Signup</NavLink>
+		//             </>
+
+		//     </nav>
+	);
 };
 
 export default NavBar;
