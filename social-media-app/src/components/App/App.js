@@ -9,20 +9,28 @@ import Header from "../Header/Header";
 import "./App.css";
 
 function App() {
+
+	
 //   const [user, setUser] = useState();
 
-// useEffect(() => {
-//   const token = (localStorage.getItem('token'));
-//   if (token) {
-//    setUser(true);
-//    console.log(`user is ${user}`)
+//   useEffect(() => {
+//    checkUser()
+//   }, [setUser]);
+
+//   const checkUser = ()=>{
+// 	const token = (localStorage.getItem('token'));
+//     if (token) {
+//      setUser(true);
+//     }
+
 //   }
-// }, []);
+
+
 
 	return (
 		<Router >
 			<div classname='App'>
-				<Header/>
+				<Header />
 				<div>
 					<Routing />
 				</div>

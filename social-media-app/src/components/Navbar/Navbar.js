@@ -1,16 +1,22 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import {NavLink} from "react-router-dom";
 import "./Navbar.css";
 
 const NavBar = () => {
-  const [user, setUser] = useState(false);
+	const navigate = useNavigate()
+  const [user, setUser] = useState();
+  
 
   useEffect(() => {
-    const token = (localStorage.getItem('token'));
+	const token = (localStorage.getItem('token'));
     if (token) {
      setUser(true);
     }
-  }, []);
+  },);
+
+
+
 
 	return (
 		<nav className='navbar'>
