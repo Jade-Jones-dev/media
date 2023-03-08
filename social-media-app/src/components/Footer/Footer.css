@@ -1,0 +1,12 @@
+.footer_wrapper{
+    display:flex;
+    color:white;
+    background-color: #091f43;
+    height:100px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-top: #d1515a solid 10px;
+
+}
