@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from "react";
-import axios from "../../API/Axios";
+import axios from "../Axios";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 // Register.js
