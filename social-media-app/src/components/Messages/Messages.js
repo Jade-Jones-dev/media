@@ -1,15 +1,15 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import './Messages.css'
 
-import React from 'react'
-
-const Messages = () => {
-    const [messages, setMessages] = useState([]);
+function Messages() {
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     async function fetchMessages() {
       const response = await fetch('http://127.0.0.1:8080/api/messages');
       const data = await response.json();
-      setMessages(data);
+      const messagesWithShowMessage = data.map(message => ({...message, showMessage: false}));
+      setMessages(messagesWithShowMessage);
     }
     fetchMessages();
   }, []);
@@ -21,31 +21,34 @@ const Messages = () => {
   }
 
   return (
-    <div>
+    <div className='messages'>
       {messages.map((message, index) => (
-        <div key={index} onClick={() => handleClick(index)}>
+        <div className='message' key={index} onClick={() => handleClick(index)}>
           <h2>{message.title}</h2>
-          {message.showMessage && <Message text={message.text} />}
+          {message.showMessage && <Message message={message} />}
         </div>
       ))}
     </div>
   );
 }
 
-function Message({ text }) {
-  const [showMessage, setShowMessage] = useState(true);
+function Message({ message }) {
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    setShowMessage(message.showMessage);
+  }, [message]);
 
   function handleClick() {
     setShowMessage(!showMessage);
   }
 
   return (
-    <div>
-      <p>{showMessage ? text : ''}</p>
-      <button onClick={handleClick}>{showMessage ? 'Hide Message' : 'Show Message'}</button>
+    <div className='message'>
+      <p>{showMessage ? message.body : ''}</p>
+      <button className='btn'onClick={handleClick}>{showMessage ? 'Hide Message' : 'Read Message'}</button>
     </div>
   );
 }
 
-
-export default Messages
+export default Messages;

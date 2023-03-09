@@ -100,6 +100,7 @@ exports.create = (req, res) => {
 		title: req.body.title,
 		body: req.body.body,
 		user_id: req.auth.userId,
+		// user_id: req.body.id,
 	};
 
 	Message.create(message)

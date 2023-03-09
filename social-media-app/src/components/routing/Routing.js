@@ -8,6 +8,7 @@ import Home from '../Home/Home'
 import Signup from "../Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 import Logout from "../Logout/Logout";
+import Messages from "../Messages/Messages";
 
 const Routing = () => {
 
@@ -27,6 +28,7 @@ const Routing = () => {
             <Route path='/signup' element={<Signup />} />
             <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/logout' element={<Logout/>}/>
+            <Route path ='/messages' element={<Messages/>}/>
             {/* <Route element={<PrivateRoute  />}>
                 <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/admindashboard' element={<AdminDashboard/>}/>
