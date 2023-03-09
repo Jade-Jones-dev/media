@@ -46,7 +46,7 @@ function Message({ message }) {
   return (
     <div className='message'>
       <p>{showMessage ? message.body : ''}</p>
-      <button className='btn'onClick={handleClick}>{showMessage ? 'Hide Message' : 'Read Message'}</button>
+      <button className='btn'onClick={handleClick}>{showMessage ? 'Hide Message' : ' Message'}</button>
     </div>
   );
 }

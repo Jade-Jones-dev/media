@@ -1,5 +1,5 @@
 .message{
-    width: 50%;
+  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
 
 .messages{
     display: flex;
+    width:80%;
     flex-direction: column;
     align-items: center;
     margin: auto;

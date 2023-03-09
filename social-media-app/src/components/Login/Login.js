@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import background from './download.jpeg'
 
-import "./Login.css";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -55,9 +53,7 @@ const Login = () => {
 	};
 
 	return (
-		<div className="maindiv" style={{ backgroundImage:`url(${background})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
-		<div className='login-wrapper'>
-		<form onSubmit={handleSubmit}>
+		<form className='signup_form' onSubmit={handleSubmit}>
 			<h1>Login</h1>
 			<label>
 				<p>Email</p>
@@ -72,8 +68,6 @@ const Login = () => {
 				<button className='btn' type='submit'>Log in</button>
 			</div>
 		</form>
-	</div>
-		</div>
 		
 	);
 };

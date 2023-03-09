@@ -25,9 +25,9 @@ function App() {
 //   }
 	return (
 		<Router >
-			<div classname='App'>
+			<div className='App'>
 				<Header />
-				<div>
+				<div className="main">
 					<Routing />
 				</div>
 				<Footer />
