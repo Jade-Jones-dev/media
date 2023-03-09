@@ -1,7 +1,6 @@
-import React from 'react'
 
 const IsAdmin = () => {
-    const token = localStorage.getItem("isAdmin"); // replace "myToken" with the name of your token
+    const token = localStorage.getItem("isAdmin"); 
     if (token === true) {
       return true;
     } else {

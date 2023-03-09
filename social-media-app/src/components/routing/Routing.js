@@ -1,26 +1,25 @@
-import React, {useEffect, useState} from "react";
+// import React, {useEffect, useState} from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Dashboard from '../Dashboard/Dashboard';
-import AdminDashboard from "../App/Admin/AdminDashboard";
+// import AdminDashboard from "../App/Admin/AdminDashboard";
 import Login from '../Login/Login'
 import Home from '../Home/Home'
 import Signup from "../Signup/Signup";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import Logout from "../Logout/Logout";
 import Messages from "../Messages/Messages";
 
 const Routing = () => {
+    // const [user, setUser] = useState()
 
-    const [user, setUser] = useState()
-
-    useEffect(() => {
+    // useEffect(() => {
 	
-        const token = (localStorage.getItem('token'));
-        if (token) {
-         setUser(true);
-        }
-      },);
+    //     const token = (localStorage.getItem('token'));
+    //     if (token) {
+    //      setUser(true);
+    //     }
+    //   },);
     return (
         <Routes>
             <Route path='/' element={<Home />} />

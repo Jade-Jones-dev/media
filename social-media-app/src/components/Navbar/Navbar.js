@@ -4,8 +4,7 @@ import {NavLink} from "react-router-dom";
 import "./Navbar.css";
 
 
-const NavBar = () => {
-	const navigate = useNavigate()
+const NavBar = () => {	const navigate = useNavigate()
   const [user, setUser] = useState();
   const [isAdmin, setIsAdmin] =useState()
   
@@ -22,9 +21,6 @@ const NavBar = () => {
      setUser(true);
     }
   },);
-
-
-
 
 	return (
 		<nav className='navbar'>

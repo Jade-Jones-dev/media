@@ -1,14 +1,11 @@
-
-
 const User = () => {
-    const token = localStorage.getItem("token"); // replace "myToken" with the name of your token
+    const token = localStorage.getItem("token"); 
   if (token) {
     return true;
   } else {
     return false;
   }
 }
-
 
 export default User
 

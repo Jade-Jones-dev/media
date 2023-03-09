@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Routing from "../routing/Routing";
-
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
@@ -24,9 +23,6 @@ function App() {
 //     }
 
 //   }
-
-
-
 	return (
 		<Router >
 			<div classname='App'>
