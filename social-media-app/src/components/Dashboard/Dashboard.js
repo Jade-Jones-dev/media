@@ -7,7 +7,7 @@ export default function Dashboard() {
 	const adminValue =localStorage.getItem('isAdmin')
 
 	const [isAdmin, setIsAdmin] =useState()
-	const [messages, setMessages] = useState()
+	const [messages, setMessages] = useState([])
   
 	useEffect(() => {
 		const adminValue = localStorage.getItem('isAdmin');
@@ -43,9 +43,20 @@ export default function Dashboard() {
 			<p>Hello</p>
 			{!isAdmin && (
 			<>
-			<h2>{name} This is a user Dashboard</h2>
 			<h2>{name} isAdmin is {adminValue}</h2>
-			
+			<div className='messages'>
+					
+					{messages.map((message, index) => {
+						const {id, title} = message;
+						return <div className='message'key={id}>
+							<h2 >{title}</h2>
+						</div>
+
+					})}
+				
+
+
+			</div>
 
 			</>
 		)}

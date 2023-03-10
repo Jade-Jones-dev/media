@@ -7,13 +7,12 @@
 }
 
 
-
-
-
 .messages{
     display: flex;
+ 
     width:80%;
     flex-direction: column;
     align-items: center;
     margin: auto;
+    white-space:nowrap;
 }

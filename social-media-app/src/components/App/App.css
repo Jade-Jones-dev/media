@@ -6,10 +6,29 @@
 
 .main {
     height: calc(100vh - 200px);
+    margin:20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: scroll;
+    white-space:nowrap;
 }
+
+ /* Hide the scrollbar in WebKit-based browsers */
+ .main::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+  /* Customize the appearance of the scrollbar thumb */
+  .main::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0.25em;
+  }
+  
+  /* Hide the scrollbar track */
+  .main::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 
 
 
@@ -32,4 +51,9 @@
 
 .btn{
 margin-top: 20px;
+}
+
+.messages{
+    height: calc(100vh - 300px);
+    width:800px;
 }
