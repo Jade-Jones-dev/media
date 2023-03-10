@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react'
 import './Dashboard.css'
-// import IsAdmin from '../Utilities/IsAdmin'
+import {useNavigate} from "react-router-dom";
 
 export default function Dashboard() {
+	const navigate = useNavigate()
 	const name=localStorage.getItem('name')
 	const adminValue =localStorage.getItem('isAdmin')
 
@@ -37,13 +38,18 @@ export default function Dashboard() {
 		  .then((data) => setMessages(data))
 		  .catch((error) => console.error(error));
 		}
+
+		function handleClick(){
+			navigate('/createMessage')
+		}
 	
 	return (
 		<div className='dashboard-wrapper'>
 			{!isAdmin && (
 			<>
+			<button onClick={handleClick}>Create message</button>
 			<div className='messages'>
-					
+			{/* <button>Create message</button> */}
 					{messages.map((message, index) => {
 						const {id, title} = message;
 						return <div className='message'key={id}>
