@@ -40,6 +40,7 @@ const Signup = () => {
 
 	return (
 	<form className='signup_form' onSubmit={handleSubmit}>
+		
 				<label>
 					<p>Name</p>
 					<input type='text' value={name} onChange={(e) => setName(e.target.value)} />
