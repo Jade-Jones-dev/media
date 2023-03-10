@@ -51,12 +51,13 @@ export default function Dashboard() {
 			<div className='messages'>
 			{/* <button>Create message</button> */}
 					{messages.map((message, index) => {
-						const {id, title} = message;
+						const {id, title, body} = message;
 						return <div className='message'key={id}>
 							<h3 >{title}</h3>
-							<Link to={`/viewMessage/${id}`}>
-							<button className='btn'>view</button>
-							</Link>
+							<Link to={`/viewMessage/${id}`} id={id} title={title} body={body}>
+  <button className='btn'>view</button>
+</Link>
+
 							
 						</div>
 
