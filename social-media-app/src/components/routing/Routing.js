@@ -33,7 +33,7 @@ const Routing = () => {
             <Route path ='/messages' element={<Messages/>}/>
             <Route path ='/createMessage' element={<CreateMessage/>}/>
             <Route path ='/updateMessage' element={<UpdateMessage/>}/>
-            <Route path ='/viewMessage' element={<ViewMessage/>}/>
+            <Route path ='/viewMessage/:id' element={<ViewMessage/>}/>
 
             {/* <Route element={<PrivateRoute  />}>
                 <Route path ='/dashboard' element={<Dashboard/>}/>

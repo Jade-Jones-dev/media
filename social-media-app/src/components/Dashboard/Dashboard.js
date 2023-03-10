@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import './Dashboard.css'
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 export default function Dashboard() {
 	const navigate = useNavigate()
@@ -54,7 +54,10 @@ export default function Dashboard() {
 						const {id, title} = message;
 						return <div className='message'key={id}>
 							<h3 >{title}</h3>
+							<Link to={`/viewMessage/${message.id}`}>
 							<button className='btn'>view</button>
+							</Link>
+							
 						</div>
 
 					})}
