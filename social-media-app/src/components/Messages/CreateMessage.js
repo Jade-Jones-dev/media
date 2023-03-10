@@ -26,8 +26,8 @@ const CreateMessage = () => {
 			.catch((error) => console.log(error));
 	};
 	return (
-		<form classbody='signup_form' onSubmit={handleSubmit}>
-            <h2>Create a message</h2>
+		<form className='signup_form' onSubmit={handleSubmit}>
+            <h2>Create message</h2>
 			<label>
 				<p>Title</p>
 				<input type='title' value={title} onChange={(event) => setTitle(event.target.value)} />

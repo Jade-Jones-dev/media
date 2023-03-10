@@ -26,6 +26,10 @@
     margin: auto;
 }
 
+.signup_form h2{
+    margin-bottom: -5px;
+}
+
 .btn{
 margin-top: 20px;
 }
