@@ -9,6 +9,9 @@ import Signup from "../Signup/Signup";
 // import PrivateRoute from "./PrivateRoute";
 import Logout from "../Logout/Logout";
 import Messages from "../Messages/Messages";
+import CreateMessage from "../Messages/CreateMessage";
+import UpdateMessage from "../Messages/UpdateMessage";
+import ViewMessage from "../Messages/ViewMessage";
 
 const Routing = () => {
     // const [user, setUser] = useState()
@@ -28,6 +31,10 @@ const Routing = () => {
             <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/logout' element={<Logout/>}/>
             <Route path ='/messages' element={<Messages/>}/>
+            <Route path ='/createMessage' element={<CreateMessage/>}/>
+            <Route path ='/updateMessage' element={<UpdateMessage/>}/>
+            <Route path ='/viewMessage' element={<ViewMessage/>}/>
+
             {/* <Route element={<PrivateRoute  />}>
                 <Route path ='/dashboard' element={<Dashboard/>}/>
             <Route path ='/admindashboard' element={<AdminDashboard/>}/>
