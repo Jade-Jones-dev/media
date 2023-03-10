@@ -1,10 +1,10 @@
 .dashboard-wrapper {
     padding: 0 20px;
     margin: 20px;
-    background-color: #aeaeae;
+    /* background-color: #aeaeae; */
     /* overflow-y: auto; /* Use auto instead of scroll to hide the scrollbar */
     /* height: calc(100vh - 195px);  */
-    white-space:nowrap;
+    /* white-space:nowrap; */
   }
   
  

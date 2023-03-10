@@ -54,6 +54,30 @@ margin-top: 20px;
 }
 
 .messages{
-    height: calc(100vh - 300px);
-    width:800px;
+    /* height: calc(100vh - 300px); */
+    display: grid;
+    width:90vw;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin: 1.5rem;
+    text-align: center; 
+    align-content: center;
+}
+
+.message{
+    display: flex;
+    flex-direction: row;
+    padding:10px;
+    background-color: #091f43;
+    color: white;
+
+}
+
+.message h3{
+    margin-right:30px;
+}
+
+.message .btn{
+    margin: auto;
+    
 }

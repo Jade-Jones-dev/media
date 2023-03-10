@@ -40,16 +40,15 @@ export default function Dashboard() {
 	
 	return (
 		<div className='dashboard-wrapper'>
-			<p>Hello</p>
 			{!isAdmin && (
 			<>
-			<h2>{name} isAdmin is {adminValue}</h2>
 			<div className='messages'>
 					
 					{messages.map((message, index) => {
 						const {id, title} = message;
 						return <div className='message'key={id}>
-							<h2 >{title}</h2>
+							<h3 >{title}</h3>
+							<button className='btn'>view</button>
 						</div>
 
 					})}
