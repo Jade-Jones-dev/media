@@ -54,7 +54,7 @@ export default function Dashboard() {
 						const {id, title} = message;
 						return <div className='message'key={id}>
 							<h3 >{title}</h3>
-							<Link to={`/viewMessage/${message.id}`}>
+							<Link to={`/viewMessage/${id}`}>
 							<button className='btn'>view</button>
 							</Link>
 							
