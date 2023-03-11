@@ -45,14 +45,14 @@ export default function Dashboard() {
 		<div className='dashboard-wrapper'>
 			{!isAdmin && (
 			<>
-			<button onClick={handleClick}>Create message</button>
+			<button  className='btn' onClick={handleClick}>Create message</button>
 			<div className='messages'>
 			{/* <button>Create message</button> */}
 					{messages.map((message, index) => {
 			
 						return <div className='message'key={message.id}>
 							<h3 >{message.title}</h3>
-							<Link to={`/viewMessage/${message.id}`} >
+							<Link className='btn' to={`/viewMessage/${message.id}`} >
   view
 </Link>
 

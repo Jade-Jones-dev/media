@@ -14,6 +14,10 @@
     white-space:nowrap; */
 }
 
+.btn{
+    padding:10px;
+}
+
 .updatemessage{
     padding:0 20px ;
     height: 90%;

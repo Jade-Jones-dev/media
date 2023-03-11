@@ -6,6 +6,17 @@
     /* height: calc(100vh - 195px);  */
     /* white-space:nowrap; */
   }
+
+  .btn{
+    padding: 5px;
+    margin-left:25px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #d1515a;
+    color:white;
+    border: none;
+    text-decoration: none;
+  }
   
  
   
