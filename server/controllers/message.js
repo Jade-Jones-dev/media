@@ -132,22 +132,30 @@ exports.findAll = (req, res) => {
 };
 
 // Completed-Find a single message with an id
-exports.findOne = (req, res) => {
+exports.findOne = async(req, res) => {
 	const id = req.params.id;
 
-	Message.findByPk(id)
-		.then((data) => {
-			if (data) {
-				res.send(data);
-			} else {
-				res.status(404).send({
-					message: `Cannot find Message with id=${id}.`,
-				});
-			}
-		})
-		.catch((err) => {
-			res.status(500).send({
-				message: "Error retrieving Message with id=" + id,
-			});
-		});
+	const message= await Message.findOne({ where: { id:id } });
+if (message === null) {
+  console.log('Not found!');
+} else {
+  console.log(message instanceof Message); // true
+  console.log(message.title); // 'My Title'
+}
+
+	// Message.findByPk(id)
+	// 	.then((data) => {
+	// 		if (data) {
+	// 			res.send(data);
+	// 		} else {
+	// 			res.status(404).send({
+	// 				message: `Cannot find Message with id=${id}.`,
+	// 			});
+	// 		}
+	// 	})
+	// 	.catch((err) => {
+	// 		res.status(500).send({
+	// 			message: "Error retrieving Message with id=" + id,
+	// 		});
+	// 	});
 };
