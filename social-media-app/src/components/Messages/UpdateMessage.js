@@ -36,7 +36,7 @@ const UpdateMessage = () => {
 			.catch((error) => console.log(error));
 	};
 	return (
-		<form className='signup_form' onSubmit={handleSubmit}>
+		<form className='updatemessage' onSubmit={handleSubmit}>
             <h2>Update message</h2>
 			<label>
 				<p>Title</p>
@@ -44,7 +44,7 @@ const UpdateMessage = () => {
 			</label>
 			<label>
 				<p>Message</p>
-				<input type='text' value={message.body}  />
+				<textarea type='text' value={message.body}  />
 			</label>
 
 			<div>
