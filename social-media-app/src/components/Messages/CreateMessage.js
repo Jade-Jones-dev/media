@@ -26,7 +26,7 @@ const CreateMessage = () => {
 			.catch((error) => console.log(error));
 	};
 	return (
-		<form className='signup_form' onSubmit={handleSubmit}>
+		<form className='updatemessage' onSubmit={handleSubmit}>
             <h2>Create message</h2>
 			<label>
 				<p>Title</p>
@@ -34,7 +34,7 @@ const CreateMessage = () => {
 			</label>
 			<label>
 				<p>Message</p>
-				<input type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+				<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
 			</label>
 
 			<div>

@@ -15,13 +15,15 @@
 }
 
 .updatemessage{
-    height: 100%;
+    padding:0 20px ;
+    height: 90%;
     width:60vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .updatemessage textarea{
-    height:150px;
-    width:100%;
+    height:120px;
+    width:98%;
 }
 .card{
     width: 500px;
