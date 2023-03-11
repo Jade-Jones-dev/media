@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const ViewMessage = ({ id, title, body }) => {
+const ViewMessage = () => {
+  const { id } = useParams();
   const [message, setMessage] = useState({});
 
   useEffect(() => {
@@ -10,12 +12,18 @@ const ViewMessage = ({ id, title, body }) => {
       .catch((error) => console.error(error));
   }, [id]);
 
+  useEffect(() => {
+    console.log(`hello the id is ${id}`);
+  }, [id]);
+
   return (
-    <div>
+    <div className='card'>
+      <h2>view message</h2>
       <h2>{message.title}</h2>
-      <p>{message.body}</p>
+      <div className='cardtext'>{message.body}</div>
     </div>
   );
 };
 
 export default ViewMessage;
+

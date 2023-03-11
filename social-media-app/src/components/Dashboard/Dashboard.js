@@ -28,9 +28,7 @@ export default function Dashboard() {
 			fetchMessages();
 		}, []);
 
-		useEffect(() => {
-			console.log(messages);
-		}, [messages]);
+		
 	
 		function fetchMessages() {
 			fetch("http://127.0.0.1:8080/api/messages/")
@@ -51,11 +49,11 @@ export default function Dashboard() {
 			<div className='messages'>
 			{/* <button>Create message</button> */}
 					{messages.map((message, index) => {
-						const {id, title, body} = message;
-						return <div className='message'key={id}>
-							<h3 >{title}</h3>
-							<Link to={`/viewMessage/${id}`} id={id} title={title} body={body}>
-  <button className='btn'>view</button>
+			
+						return <div className='message'key={message.id}>
+							<h3 >{message.title}</h3>
+							<Link to={`/viewMessage/${message.id}`} >
+  view
 </Link>
 
 							

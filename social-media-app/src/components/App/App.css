@@ -14,6 +14,14 @@
     white-space:nowrap;
 }
 
+.card{
+    width: 500px;
+}
+
+.cardtext{
+    width:300px;
+}
+
  /* Hide the scrollbar in WebKit-based browsers */
  .main::-webkit-scrollbar {
     width: 0.5em;
