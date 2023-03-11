@@ -17,12 +17,20 @@ const ViewMessage = () => {
   }, [id]);
 
   return (
-    <div className='card'>
-      <h2>view message</h2>
+    <div className="viewMessage">
+      <div className='card'>
       <h2>{message.title}</h2>
       <div className='cardtext'>{message.body}</div>
-      <Link to={`/updateMessage/${message.id}`}>Update Message</Link>
+      <div className="buttons">
+      <Link className='btns' to={`/updateMessage/${message.id}`}>Edit</Link>
+      <button className="btns">Like</button>
+      <button className="btns">Comment</button>
+      <button className="btns">Delete</button>
+      </div>
+      
     </div>
+    </div>
+    
   );
 };
 
