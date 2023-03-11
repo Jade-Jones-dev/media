@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const ViewMessage = () => {
   const { id } = useParams();
@@ -21,6 +21,7 @@ const ViewMessage = () => {
       <h2>view message</h2>
       <h2>{message.title}</h2>
       <div className='cardtext'>{message.body}</div>
+      <Link to={`/updateMessage/${message.id}`}>Update Message</Link>
     </div>
   );
 };

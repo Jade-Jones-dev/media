@@ -32,7 +32,7 @@ const Routing = () => {
             <Route path ='/logout' element={<Logout/>}/>
             <Route path ='/messages' element={<Messages/>}/>
             <Route path ='/createMessage' element={<CreateMessage/>}/>
-            <Route path ='/updateMessage' element={<UpdateMessage/>}/>
+            <Route path ='/updateMessage/:id' element={<UpdateMessage/>}/>
             <Route path ='/viewMessage/:id' element={<ViewMessage/>}/>
 
             {/* <Route element={<PrivateRoute  />}>

@@ -1,25 +1,35 @@
-import React, {useState}from 'react';
-import {useNavigate} from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const UpdateMessage = () => {
-	const navigate = useNavigate();
-	const [title, setTitle] = useState("");
-	const [body, setBody] = useState("");
+	const { id } = useParams();
+	const [message, setMessage] = useState({});
+	// const [title, setTitle] = useState("");
+	// const [body, setBody] = useState("");
+
+	useEffect(() => {
+		fetch(`http://localhost:8080/api/messages/${id}`)
+		  .then((response) => response.json())
+		  .then((data) => setMessage(data))
+		  .catch((error) => console.error(error));
+	  }, [id]);
+
+	
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const newMessage = {
-			body,
-			title,
-		};
+		// const newMessage = {
+		// 	body,
+		// 	title,
+		// };
 
-		fetch("http://127.0.0.1:8080/api/messages", {
+		fetch(`http://127.0.0.1:8080/api/messages${id}`, {
 			method: "post",
 			headers: {
 				"Content-type": "application/json",
 			},
-			body: JSON.stringify(newMessage),
+			// body: JSON.stringify(newMessage),
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
@@ -30,11 +40,11 @@ const UpdateMessage = () => {
             <h2>Update message</h2>
 			<label>
 				<p>Title</p>
-				<input type='title' value={title} onChange={(event) => setTitle(event.target.value)} />
+				<input type='title' value={message.title} />
 			</label>
 			<label>
 				<p>Message</p>
-				<input type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+				<input type='text' value={message.body}  />
 			</label>
 
 			<div>
