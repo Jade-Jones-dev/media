@@ -14,7 +14,7 @@ const UpdateMessage = () => {
 		  .catch((error) => console.error(error));
 		  setTitle(message.title)
 		  setBody(message.body)
-	  }, [id]);
+	  }, [id, message.body, message.title]);
 
 	
 
