@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const bodyParser = require('body-parser')
 dotenv.config();
 
 const userRoutes = require("./routes/user");
@@ -22,9 +23,11 @@ var corsOptions = {
 	origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+
 
 
 app.use("/api/auth", userRoutes);

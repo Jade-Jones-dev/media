@@ -68,10 +68,10 @@ exports.update = (req, res) => {
 exports.delete = (req, res, next) => {
 	Message.findOne({id: req.params.id})
 		.then((message) => {
-			if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
-				res.status(403).json({message: "Unauthorised"});
-				return;
-			}
+			// if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
+			// 	res.status(403).json({message: "Unauthorised"});
+			// 	return;
+			// }
 
 			Message.destroy({where: {id: req.params.id}})
 				.then(() => res.status(200).json({message: "Message has been deleted"}))
@@ -82,24 +82,24 @@ exports.delete = (req, res, next) => {
 
 // Completed- Create a new Message
 exports.create = (req, res) => {
-	if (!req.body.title) {
-		res.status(400).send({
-			message: "Your post title can not be empty!",
-		});
-		return;
-	}
+	// if (!req.body.title) {
+	// 	res.status(400).send({
+	// 		message: "Your post title can not be empty!",
+	// 	});
+	// 	return;
+	// }
 
-	if (!req.body.body) {
-		res.status(400).send({
-			message: "Your post content can not be empty!",
-		});
-		return;
-	}
+	// if (!req.body.body) {
+	// 	res.status(400).send({
+	// 		message: "Your post content can not be empty!",
+	// 	});
+	// 	return;
+	// }
 
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
-		user_id: req.auth.userId,
+		user_id: req.body.user_id,
 		// user_id: req.body.id,
 	};
 
