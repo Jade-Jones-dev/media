@@ -13,35 +13,38 @@ import CreateMessage from "../Messages/CreateMessage";
 import UpdateMessage from "../Messages/UpdateMessage";
 import ViewMessage from "../Messages/ViewMessage";
 
-const Routing = () => {
-	const [user, setUser] = useState(false);
+const Routing = ({user}) => {
+	// const [user, setUser] = useState(false);
   
 
-    useEffect(() => {
+    // useEffect(() => {
       
-      const token = (localStorage.getItem('token'));
-      // const admin =(localStorage.getItem('isAdmin'))
-      // if (admin === true){
-      // 	setIsAdmin(true)
-      // }
-      // else
-      if (token) {
-       setUser(true);
-     
-      }
+    //   getUser()
       
-     }, [setUser]);
+    //  },[setUser]);
 
-     useEffect(() => {
-        console.log(user)
-     },)
+    //  function getUser(){
+    //     const token = (localStorage.getItem('token'));
+    //   // const admin =(localStorage.getItem('isAdmin'))
+    //   // if (admin === true){
+    //   // 	setIsAdmin(true)
+    //   // }
+    //   // else
+    //   if (token) {
+    //    setUser(true);
+     
+    //   }
+    //  }
+
+    //  useEffect(() => {
+    //     console.log(user)
+    //  },[setUser])
     console.log(`this is user routing routes ${user}`);
 	return (
 		<Routes>
 			<Route path='/' element={<Home />} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/signup' element={<Signup />} />
-
               {user && (
         <>
          {/* <Route element={<PrivateRoute user={user}/>}> */}

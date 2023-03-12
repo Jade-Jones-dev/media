@@ -8,7 +8,31 @@ import Header from "../Header/Header";
 import "./App.css";
 
 function App() {
+	const [user, setUser] = useState(false);
+  
 
+    useEffect(() => {
+      
+      getUser()
+      
+     },);
+
+     function getUser(){
+        const token = (localStorage.getItem('token'));
+      // const admin =(localStorage.getItem('isAdmin'))
+      // if (admin === true){
+      // 	setIsAdmin(true)
+      // }
+      // else
+      if (token) {
+       setUser(true);
+     
+      }
+     }
+
+     useEffect(() => {
+        console.log(user)
+     },)
 	
 
 	return (
@@ -16,7 +40,7 @@ function App() {
 			<div className='App'>
 				<Header />
 				<div className="main">
-					<Routing />
+					<Routing user={user}/>
 				</div>
 			</div>
 		</Router>
