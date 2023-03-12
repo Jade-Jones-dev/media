@@ -99,7 +99,7 @@ exports.create = (req, res) => {
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
-		user_id: req.auth.userId,
+		user_id: req.body.user_id,
 		// user_id: req.body.id,
 	};
 
