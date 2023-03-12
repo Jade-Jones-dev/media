@@ -68,10 +68,10 @@ exports.update = (req, res) => {
 exports.delete = (req, res, next) => {
 	Message.findOne({id: req.params.id})
 		.then((message) => {
-			if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
-				res.status(403).json({message: "Unauthorised"});
-				return;
-			}
+			// if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
+			// 	res.status(403).json({message: "Unauthorised"});
+			// 	return;
+			// }
 
 			Message.destroy({where: {id: req.params.id}})
 				.then(() => res.status(200).json({message: "Message has been deleted"}))

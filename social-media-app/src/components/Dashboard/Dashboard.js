@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import './Dashboard.css'
 import {useNavigate, Link} from "react-router-dom";
 
-export default function Dashboard() {
+export default function Dashboard({user}) {
 	const navigate = useNavigate()
 	const name=localStorage.getItem('name')
 	const adminValue =localStorage.getItem('isAdmin')

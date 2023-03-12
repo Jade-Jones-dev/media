@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 const ViewMessage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [message, setMessage] = useState({});
 
@@ -16,6 +17,18 @@ const ViewMessage = () => {
     console.log(`hello the id is ${id}`);
   }, [id]);
 
+  function handleDelete(){
+    fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
+      method : "delete"
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+      navigate('/dashboard')    
+  }
+
+ 
+
   return (
     <div className="viewMessage">
       <div className='card'>
@@ -25,7 +38,7 @@ const ViewMessage = () => {
       <Link className='btns' to={`/updateMessage/${message.id}`}>Edit</Link>
       <button className="btns">Like</button>
       <button className="btns">Comment</button>
-      <button className="btns">Delete</button>
+      <button className="btns" onClick={handleDelete}>Delete</button>
       </div>
       
     </div>
