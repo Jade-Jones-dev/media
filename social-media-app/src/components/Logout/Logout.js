@@ -3,7 +3,7 @@ import  { useEffect, } from "react";
 const Logout = () => {
   
     useEffect(() => {
-        localStorage.removeItem("token");
+        window.localStorage.clear();
         window.location = "/";
     }, []);
     return null;

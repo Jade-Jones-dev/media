@@ -1,9 +1,8 @@
-import React from "react";
+import React , {useState, useEffect} from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ user }) => {
-    console.log(user);
-    return user ? <Outlet /> : <Navigate to='/login' />;
-};
-
-export default PrivateRoute;
+const PrivateRoute = ({ user, ...props }) => {
+    return user ? <Outlet {...props} /> : <Navigate to="/login" />;
+  };
+  
+  export default PrivateRoute;
