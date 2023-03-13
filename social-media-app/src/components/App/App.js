@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 
 
 
@@ -20,27 +20,25 @@ import ViewMessage from "../Messages/ViewMessage";
 import "./App.css";
 
 function App() {
-	const [user, setUser] = useState(false);
+   const [user, setUser] = useState(false);
 
-	useEffect(() => {
-		getUser();
-	},[setUser]);
-
-	function getUser() {
-		const token = localStorage.getItem("token");
-		// const admin =(localStorage.getItem('isAdmin'))
-		// if (admin === true){
-		// 	setIsAdmin(true)
-		// }
-		// else
-		if (token) {
-			setUser(true);
-		}
-	}
-
-	useEffect(() => {
-		console.log(user);
-	});
+   useEffect(() => {
+     getUser();
+   }, [user]);
+ 
+   useEffect(() => {
+     console.log(user);
+   }, [user]);
+ 
+   async function getUser() {
+      const token = await localStorage.getItem("token");
+      if (token) {
+        setUser(true);
+      } else {
+        setUser(false);
+      }
+    }
+    
 
 	return (
 		<Router>
@@ -55,7 +53,7 @@ function App() {
 						{user && (
 							<>
 								{/* <Route element={<PrivateRoute user={user}/>}> */}
-								<Route path='/dashboard' element={<Dashboard />} />
+								<Route path='/dashboard' element={<Dashboard user={user}/>} />
 								<Route path='/logout' element={<Logout />} />
 								<Route path='/messages' element={<Messages />} />
 								<Route path='/createMessage' element={<CreateMessage />} />
