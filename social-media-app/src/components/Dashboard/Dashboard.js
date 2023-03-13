@@ -9,6 +9,7 @@ export default function Dashboard({user}) {
 
 	const [isAdmin, setIsAdmin] = useState();
 	const [messages, setMessages] = useState([]);
+	// const [reloadCount, setReloadCount] = useState()
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -17,13 +18,15 @@ export default function Dashboard({user}) {
 	}, []);
 
 
-
-	//   useEffect(() => {
-	// 	fetch("http://127.0.0.1:8080/api/auth/login")
-	// 	  .then((response) => response.json())
-	// 	  .then((data) => setMessages(data))
-	// 	  .catch((error) => console.error(error));
-	//   }, []);
+	// useEffect(() => {
+	// 	if(reloadCount < 2) {
+	// 	  localStorage.setItem('reloadCount', String(reloadCount + 1));
+	// 	  setReloadCount(reloadCount + 1);
+	// 	  window.location.reload();
+	// 	} else {
+	// 	  localStorage.removeItem('reloadCount');
+	// 	}
+	//   }, [reloadCount]);
 
 	useEffect(() => {
 		fetchMessages();
@@ -63,11 +66,23 @@ export default function Dashboard({user}) {
 				</>
 			)}
 			{isAdmin && (
-				<>
-					<h2>{name} This is an Admin Dashboard</h2>
-					<h2>
-						{name} isAdmin is {adminValue}
-					</h2>
+					<>
+					<button className='btn' onClick={handleClick}>
+						Create message
+					</button>
+					<div className='messages'>
+						{/* <button>Create message</button> */}
+						{messages.map((message, index) => {
+							return (
+								<div className='message' key={message.id}>
+									<h3>{message.title}</h3>
+									<Link className='btn' to={`/viewMessage/${message.id}`}>
+										view
+									</Link>
+								</div>
+							);
+						})}
+					</div>
 				</>
 			)}
 		</div>

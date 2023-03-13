@@ -61,6 +61,10 @@
 	text-decoration: none;
 }
 
+.new-button{
+	margin-left:10px;
+}
+
 .messages {
 	display: flex;
 	height: calc(100vh-100px);
