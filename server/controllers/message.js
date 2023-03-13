@@ -7,10 +7,10 @@ const Op = db.Sequelize.Op;
 exports.update = (req, res) => {
 	const id = req.params.id;
 
-	if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
-		res.status(403).json({message: "Unauthorised"});
-		return;
-	}
+	// if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
+	// 	res.status(403).json({message: "Unauthorised"});
+	// 	return;
+	// }
 
 	Message.update(req.body, {
 		where: {id: id},
