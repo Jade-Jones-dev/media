@@ -10,35 +10,33 @@ const UpdateMessage = () => {
 	useEffect(() => {
 		fetch(`http://localhost:8080/api/messages/${id}`)
 		  .then((response) => response.json())
-		  .then((data) => setMessage(data))
+		  .then((data) => {
+			setMessage(data);
+			setTitle(data.title);
+			setBody(data.body);
+		  })
 		  .catch((error) => console.error(error));
-		  setTitle(message.title)
-		  setBody(message.body)
-	  }, [id, message.body, message.title]);
+	  }, [id]);
 
 	
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const newMessage = {
-			body,
-			title,
-		};
-
+	
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "put",
 			headers: {
 				"Content-type": "application/json",
 			},
-			 body: JSON.stringify({newMessage}),
+			 body: JSON.stringify({id, body, title}),
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
+			console.log(id, body, title)
 	};
 	return (
-		<form className='updatemessage' onSubmit={handleSubmit}>
+		<form className='updatemessage' >
             <h2>Update message</h2>
 			<label>
 				<p>Title</p>
@@ -50,7 +48,7 @@ const UpdateMessage = () => {
 			</label>
 
 			<div>
-				<button type='submit' className='btn'>
+				<button type='submit' onClick={handleSubmit} className='btn'>
 					Post
 				</button>
 			</div>
