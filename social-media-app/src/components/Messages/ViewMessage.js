@@ -55,6 +55,19 @@ const ViewMessage = () => {
 					<button className='btns'>Comment</button>
 				</div>
 			</div>
+      <div className="comments">
+        <p>Comments</p>
+        <p>This is comment 1</p>
+        <p>This is comment 1</p>
+        <p>This is comment 1</p>
+        {/* {comments.map((comment, index) => {
+							return (
+								<div className='comment' key={comment.id}>
+									<h3>{comment.body}</h3>
+								</div>
+							);
+						})} */}
+      </div>
 		</div>
 	);
 };
