@@ -6,7 +6,6 @@ import { Route, Routes, Navigate} from "react-router-dom";
 import Header from "../Header/Header";
 
 import Dashboard from "../Dashboard/Dashboard";
-// import AdminDashboard from "../App/Admin/AdminDashboard";
 import Login from "../Login/Login";
 import Home from "../Home/Home";
 import Signup from "../Signup/Signup";
