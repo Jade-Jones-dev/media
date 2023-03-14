@@ -1,10 +1,26 @@
 import React, {useState, useEffect} from "react";
 import {useParams, Link, useNavigate} from "react-router-dom";
+import Modal from "react-modal";
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "white",
+    width: 400,
+	height:250
+  },
+};
 
 const ViewMessage = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
 	const [message, setMessage] = useState({});
+	const [modalOpen, setModalOpen] = useState(false);
+	const[body, setBody] = useState("")
 
 	const [isAdmin, setIsAdmin] = useState();
 
@@ -35,6 +51,10 @@ const ViewMessage = () => {
 		navigate("/dashboard");
 	}
 
+	function handleSubmit(){
+
+	}
+
 	return (
 		<div className='viewMessage'>
 			<div className='card'>
@@ -52,7 +72,26 @@ const ViewMessage = () => {
           </div>
 					) : null}
 					<button className='btns'>Like</button>
-					<button className='btns'>Comment</button>
+					<button className='btns'onClick={setModalOpen}>Comment</button>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        style={customStyles}
+      >
+        		<form className='signup_form' onSubmit={handleSubmit}>
+			<label>
+				<p>Comment</p>
+				<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+			</label>
+
+			<div>
+			<button className='btns' onClick={() => setModalOpen(false)}>Post comment</button>
+			</div>
+		</form>
+
+       
+      </Modal>
+
 				</div>
 			</div>
       <div className="comments">
