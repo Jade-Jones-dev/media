@@ -41,30 +41,31 @@ function App() {
     
 
 	return (
-		
-			<div className='App'>
-				<Header />
-				<div className='main'>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/login' element={<Login />} />
-						<Route path='/signup' element={<Signup />} />
-                  
-						{user && (
-							<>
-								{/* <Route element={<PrivateRoute user={user}/>}> */}
-								<Route path='/dashboard' element={<Dashboard user={user}/>} />
-								<Route path='/logout' element={<Logout />} />
-								<Route path='/messages' element={<Messages />} />
-								<Route path='/createMessage' element={<CreateMessage />} />
-								<Route path='/updateMessage/:id' element={<UpdateMessage />} />
-								<Route path='/viewMessage/:id' element={<ViewMessage />} />
-								{/* </Route> */}
-							</>
-						)}
-					</Routes>
-				</div>
+		<div className='App'>
+			<Header />
+			<div className='main'>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/signup' element={<Signup />} />
+					<Route path='/dashboard' element={<Dashboard user={user} />} />
+					<Route path='/logout' element={<Logout />} />
+							<Route path='/messages' element={<Messages />} />
+							<Route path='/createMessage' element={<CreateMessage />} />
+							<Route path='/updateMessage/:id' element={<UpdateMessage />} />
+							<Route path='/viewMessage/:id' element={<ViewMessage />} />
+						{/* 
+											{user && (
+												<>
+													{/* <Route element={<PrivateRoute user={user}/>}> */}
+
+													
+													{/* </Route> */}
+												{/* </> */}
+											)} */}
+				</Routes>
 			</div>
+		</div>
 	);
 }
 
