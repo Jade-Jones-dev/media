@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import { useAuth } from "../Utilities/auth";
 
 
 const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [user, setUser] = useState('')
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isMounted, setIsMounted] = useState(false);
+	const auth = useAuth()
 
 	useEffect(() => {
 		setIsMounted(true);
@@ -19,6 +22,7 @@ const Login = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		auth.login(user)
 		fetch("http://127.0.0.1:8080/api/auth/login", {
 			method: "post",
 			headers: {
@@ -59,7 +63,7 @@ const Login = () => {
 			<h1>Login</h1>
 			<label>
 				<p>Email</p>
-				<input type='email' value={email} onChange={(event) => setEmail(event.target.value)} />
+				<input type='email' value={email} onChange={(event) => {setEmail(event.target.value) ;setUser(event.target.value)}} />
 			</label>
 			<label>
 				<p>Password</p>

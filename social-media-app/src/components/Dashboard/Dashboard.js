@@ -1,8 +1,10 @@
 import {useState, useEffect} from "react";
 import "./Dashboard.css";
 import {useNavigate, Link} from "react-router-dom";
+import { useAuth } from "../Utilities/auth";
 
-export default function Dashboard({user}) {
+export default function Dashboard() {
+	const auth = useAuth()
 	const navigate = useNavigate();
 	const name = localStorage.getItem("name");
 	const adminValue = localStorage.getItem("isAdmin");
@@ -43,10 +45,19 @@ export default function Dashboard({user}) {
 		navigate("/createMessage");
 	}
 
+	const handlelogout = () => {
+		auth.logout()
+		navigate('/')
+	}
+
 	return (
 		<div className='dashboard-wrapper'>
 			{!isAdmin && (
 				<>
+				<p>Welcome {auth.user}</p>
+				<button className='btn' onClick={handlelogout}>
+						Logout
+					</button>
 					<button className='btn' onClick={handleClick}>
 						Create message
 					</button>
