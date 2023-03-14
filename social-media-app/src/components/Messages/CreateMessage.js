@@ -5,20 +5,14 @@ const CreateMessage = () => {
 	const navigate = useNavigate();
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
-	const [user_id, setUser_id] = useState()
+	const [user_id, setUser_id] = useState();
 
-	
-
-
-	
-  
 	useEffect(() => {
-		const id=localStorage.getItem('userId')
-		const userid= JSON.parse(id);
-		console.log(`this is userid ${userid}`)
-		setUser_id(userid);
-	  }, []);
-
+		const id = localStorage.getItem("userId");
+		// const userid= JSON.parse(id);
+		console.log(`this is userid ${id}`);
+		setUser_id(id);
+	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -39,11 +33,11 @@ const CreateMessage = () => {
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
-			navigate('/dashboard')
+		navigate("/dashboard");
 	};
 	return (
 		<form className='updatemessage' onSubmit={handleSubmit}>
-            <h2>Create message</h2>
+			<h2>Create message</h2>
 			<label>
 				<p>Title</p>
 				<input type='title' value={title} onChange={(event) => setTitle(event.target.value)} />

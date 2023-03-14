@@ -70,6 +70,7 @@ exports.login = (req, res, next) => {
 					console.log("token", token);
 					res.status(200).json({
 						userId: user.id,
+						id: user.id,
 						token: token,
 						isAdmin: user.isAdmin,
 						name: user.name
