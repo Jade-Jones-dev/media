@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { Route, Routes, Navigate} from "react-router-dom";
 
 
 
@@ -41,7 +41,7 @@ function App() {
     
 
 	return (
-		<Router>
+		
 			<div className='App'>
 				<Header />
 				<div className='main'>
@@ -65,7 +65,6 @@ function App() {
 					</Routes>
 				</div>
 			</div>
-		</Router>
 	);
 }
 

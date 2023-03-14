@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const UpdateMessage = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [message, setMessage] = useState({});
 	const [title, setTitle] = useState("");
@@ -21,7 +22,7 @@ const UpdateMessage = () => {
 	
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+	e.preventDefault()
 	
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "put",
@@ -31,9 +32,12 @@ const UpdateMessage = () => {
 			 body: JSON.stringify({id, body, title}),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				console.log(data);
+				navigate('/');
+			})
 			.catch((error) => console.log(error));
-			console.log(id, body, title)
+			
 	};
 	return (
 		<form className='updatemessage' >
