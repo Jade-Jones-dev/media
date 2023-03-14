@@ -26,15 +26,15 @@ exports.createcomment = (req, res) => {
 
 exports.findcomments = (req, res) => {
 	const message_id = req.query.message_id;
-	var condition = message_id ? {message_id: {[Op.like]: `%${message_id}%`}} : null;
-
-	Comment.findAll({where: condition})
-		.then((data) => {
-			res.send(data);
-		})
-		.catch((err) => {
-			res.status(500).send({
-				message: err.message || "An error occurred whilst retrieving posts.",
-			});
+  
+	Comment.findAll({ where: { message_id: message_id } })
+	  .then((data) => {
+		res.send(data);
+	  })
+	  .catch((err) => {
+		res.status(500).send({
+		  message:
+			err.message || "Sorry there was an error while searching for comments",
 		});
-};
+	  });
+  };

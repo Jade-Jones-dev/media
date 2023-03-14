@@ -2,17 +2,17 @@ import React, {useState, useEffect} from "react";
 import {useParams, Link, useNavigate} from "react-router-dom";
 import Modal from "react-modal";
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "white",
-    width: 400,
-	height:250
-  },
+	content: {
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		backgroundColor: "white",
+		width: 400,
+		height: 250,
+	},
 };
 
 const ViewMessage = () => {
@@ -20,11 +20,24 @@ const ViewMessage = () => {
 	const {id} = useParams();
 	const [message, setMessage] = useState({});
 	const [modalOpen, setModalOpen] = useState(false);
-	const[body, setBody] = useState("")
+	const [body, setBody] = useState("");
 
 	const [isAdmin, setIsAdmin] = useState();
 	const [user_id, setUser_id] = useState();
-	const [message_id, setMessage_id] = useState()
+	const [message_id, setMessage_id] = useState();
+	const [comments, setComments] = useState([]);
+
+	useEffect(() => {
+		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
+		  .then((response) => {
+			if (!response.ok) {
+			  throw new Error("Failed to retrieve comments");
+			}
+			return response.json();
+		  })
+		  .then((data) => console.log(data))
+		  .catch((error) => console.error(error));
+	  }, [id]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -39,11 +52,9 @@ const ViewMessage = () => {
 		setUser_id(theuser);
 	}, []);
 
-	useEffect(() =>{
-		setMessage_id(id)
-	})
-
-	
+	useEffect(() => {
+		setMessage_id(id);
+	});
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`)
@@ -66,15 +77,7 @@ const ViewMessage = () => {
 		navigate("/dashboard");
 	}
 
-	function handleSubmit(e){
-		// e.preventDefault();
-
-		// const comment = {
-		// 	"user_id":user_id,
-		// 	"body":body,
-		// 	"message_id":message_id,
-		// };
- console.log(`This is user_id ${user_id}, message_id ${message_id}, body ${body}`)
+	function handleSubmit(e) {
 		fetch("http://127.0.0.1:8080/api/comment", {
 			method: "post",
 			headers: {
@@ -85,7 +88,7 @@ const ViewMessage = () => {
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
-		setModalOpen(false)
+		setModalOpen(false);
 	}
 
 	return (
@@ -95,51 +98,39 @@ const ViewMessage = () => {
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
 					{isAdmin ? (
-            <div>
-						<Link className='btns' to={`/updateMessage/${message.id}`}>
-							Edit
-						</Link>
-            <button className='btns new-button' onClick={handleDelete}>
-            Delete
-          </button>
-          </div>
+						<div>
+							<Link className='btns' to={`/updateMessage/${message.id}`}>
+								Edit
+							</Link>
+							<button className='btns new-button' onClick={handleDelete}>
+								Delete
+							</button>
+						</div>
 					) : null}
 					<button className='btns'>Like</button>
-					<button className='btns'onClick={setModalOpen}>Comment</button>
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={() => setModalOpen(false)}
-        style={customStyles}
-      >
-        		<form className='signup_form' >
-			<label>
-				<p>Comment</p>
-				<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
-			</label>
+					<button className='btns' onClick={setModalOpen}>
+						Comment
+					</button>
+					<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} style={customStyles}>
+						<form className='signup_form'>
+							<label>
+								<p>Comment</p>
+								<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+							</label>
 
-			<div>
-			<button className='btns'type='submit' onClick={(e) => handleSubmit(e)}>Post comment</button>
-			</div>
-		</form>
-
-       
-      </Modal>
-
+							<div>
+								<button className='btns' type='submit' onClick={(e) => handleSubmit(e)}>
+									Post comment
+								</button>
+							</div>
+						</form>
+					</Modal>
 				</div>
 			</div>
-      <div className="comments">
-        <p>Comments</p>
-        <p>This is comment 1</p>
-        <p>This is comment 1</p>
-        <p>This is comment 1</p>
-        {/* {comments.map((comment, index) => {
-							return (
-								<div className='comment' key={comment.id}>
-									<h3>{comment.body}</h3>
-								</div>
-							);
-						})} */}
-      </div>
+			<div className='comments'>
+				<p>Comments</p>
+				
+			</div>
 		</div>
 	);
 };
