@@ -118,6 +118,11 @@
 	margin: auto;
 }
 
+.signup_form textarea{
+	width:260px;
+	height: 100px;
+}
+
 .signup_form h2 {
 	margin-bottom: -5px;
 }

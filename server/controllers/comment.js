@@ -4,7 +4,7 @@ const Comment = db.comments;
 const Op = db.Sequelize.Op
 
 // Completed- Create a new Message
-exports.create = (req, res) => {
+exports.createcomment = (req, res) => {
 
 	const comment = {
 		message_id: req.body.message_id,
@@ -23,3 +23,18 @@ exports.create = (req, res) => {
 			});
 		});
 };
+
+exports.findcomments = (req, res) => {
+	const message_id = req.query.message_id;
+  
+	Comment.findAll({ where: { message_id: message_id } })
+	  .then((data) => {
+		res.send(data);
+	  })
+	  .catch((err) => {
+		res.status(500).send({
+		  message:
+			err.message || "Sorry there was an error while searching for comments",
+		});
+	  });
+  };
