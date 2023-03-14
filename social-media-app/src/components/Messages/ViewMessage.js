@@ -29,15 +29,15 @@ const ViewMessage = () => {
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
-		  .then((response) => {
-			if (!response.ok) {
-			  throw new Error("Failed to retrieve comments");
-			}
-			return response.json();
-		  })
-		  .then((data) => console.log(data))
-		  .catch((error) => console.error(error));
-	  }, [id]);
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to retrieve comments");
+				}
+				return response.json();
+			})
+			.then((data) => setComments(data))
+			.catch((error) => console.error(error));
+	}, [id]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -126,10 +126,16 @@ const ViewMessage = () => {
 						</form>
 					</Modal>
 				</div>
-			</div>
-			<div className='comments'>
-				<p>Comments</p>
-				
+				<div className='comments'>
+					<h4>Comments</h4>
+					{comments.map((comment) => {
+						return (
+							<div className='comment' key={comment.id}>
+								<p>{comment.body}</p>
+							</div>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);
