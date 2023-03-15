@@ -88,3 +88,15 @@ exports.login = (req, res, next) => {
 			});
 		});
 };
+
+exports.deleteUser = (req, res, next) => {
+	User.findOne({id: req.params.id})
+		.then((user) => {
+			
+
+			User.destroy({where: {id: req.params.id}})
+				.then(() => res.status(200).json({message: "Account has been deleted"}))
+				.catch((error) => res.status(400).json({error}));
+		})
+		.catch((error) => res.status(400).json({error}));
+};
