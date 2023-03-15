@@ -25,7 +25,9 @@ const ViewMessage = () => {
 	const [isAdmin, setIsAdmin] = useState();
 	const [user_id, setUser_id] = useState();
 	const [message_id, setMessage_id] = useState();
+	const [messageUserId, setMessageUserId] = useState();
 	const [comments, setComments] = useState([]);
+	const [isCreator, setIsCreator] = useState(false);
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
@@ -35,7 +37,9 @@ const ViewMessage = () => {
 				}
 				return response.json();
 			})
-			.then((data) => setComments(data))
+			.then((data) => {
+				setComments(data);
+			})
 			.catch((error) => console.error(error));
 	}, [id]);
 
@@ -47,25 +51,41 @@ const ViewMessage = () => {
 
 	useEffect(() => {
 		const theuser = localStorage.getItem("userId");
-		// const userid= JSON.parse(id);
-		console.log(`this is  the user userid ${theuser}`);
 		setUser_id(theuser);
 	}, []);
 
 	useEffect(() => {
 		setMessage_id(id);
-	});
+	}, [id]);
+
+	
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`)
 			.then((response) => response.json())
-			.then((data) => setMessage(data))
+			.then((data) => {
+				setMessage(data);
+				setMessageUserId(data.user_id.toString());
+			})
 			.catch((error) => console.error(error));
 	}, [id]);
 
 	useEffect(() => {
+		if (messageUserId === user_id) {
+			setIsCreator(true);
+		} else {
+			setIsCreator(false);
+		}
+	}, [messageUserId, user_id]);
+
+	useEffect(() => {
+		console.log(`This is the message user id ${messageUserId}`);
+		console.log(`This is the userid ${user_id}`);
 		console.log(`hello the id is ${id}`);
-	}, [id]);
+		console.log(`This is iscreator ${isCreator}`);
+		console.log(`This is the type of message user id ${typeof messageUserId}`)
+		console.log(`This is the type of user id ${typeof user_id}`)
+	}, [isCreator, id, messageUserId, user_id]);
 
 	function handleDelete() {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
@@ -98,6 +118,16 @@ const ViewMessage = () => {
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
 					{isAdmin ? (
+						<div>
+							<Link className='btns' to={`/updateMessage/${message.id}`}>
+								Edit
+							</Link>
+							<button className='btns new-button' onClick={handleDelete}>
+								Delete
+							</button>
+						</div>
+					) : null}
+					{isCreator ? (
 						<div>
 							<Link className='btns' to={`/updateMessage/${message.id}`}>
 								Edit

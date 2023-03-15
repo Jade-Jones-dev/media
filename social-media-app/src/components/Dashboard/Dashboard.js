@@ -2,15 +2,32 @@ import {useState, useEffect} from "react";
 import "./Dashboard.css";
 import {useNavigate, Link} from "react-router-dom";
 import { useAuth } from "../Utilities/auth";
+import Modal from "react-modal";
+const customStyles = {
+	content: {
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		backgroundColor: "white",
+		width: 400,
+		height: 250,
+	},
+};
 
 export default function Dashboard() {
 	const auth = useAuth()
 	const navigate = useNavigate();
 	const name = localStorage.getItem("name");
-	const adminValue = localStorage.getItem("isAdmin");
+	
+	
 
 	const [isAdmin, setIsAdmin] = useState();
+	const [userId, setUserId] = useState();
 	const [messages, setMessages] = useState([]);
+	const [modalOpen, setModalOpen] = useState(false);
 	// const [reloadCount, setReloadCount] = useState()
 
 	useEffect(() => {
@@ -19,16 +36,22 @@ export default function Dashboard() {
 		setIsAdmin(isAdmin);
 	}, []);
 
+	useEffect(() =>{
+		const idValue = localStorage.getItem('userId')
+		setUserId(idValue)
+	}, [])
 
-	// useEffect(() => {
-	// 	if(reloadCount < 2) {
-	// 	  localStorage.setItem('reloadCount', String(reloadCount + 1));
-	// 	  setReloadCount(reloadCount + 1);
-	// 	  window.location.reload();
-	// 	} else {
-	// 	  localStorage.removeItem('reloadCount');
-	// 	}
-	//   }, [reloadCount]);
+
+	function handleSubmit(e) {
+		fetch(`http://127.0.0.1:8080/api/auth/deleteaccount/${userId}`, {
+			method: "delete",
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error(error));
+		navigate("/dashboard");
+		setModalOpen(false);
+	}
 
 	useEffect(() => {
 		fetchMessages();
@@ -55,12 +78,30 @@ export default function Dashboard() {
 			{!isAdmin && (
 				<>
 				<p>Welcome {auth.user}</p>
+				<div >
+				<button className='btn' onClick={handleClick}>
+						Create message
+					</button>
 				<button className='btn' onClick={handlelogout}>
 						Logout
 					</button>
-					<button className='btn' onClick={handleClick}>
-						Create message
+					<button className='btn' onClick={setModalOpen}>
+						Delete account
 					</button>
+					<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} style={customStyles}>
+						<form className='signup_form'>
+							<p>Are you sure you want to delete your account? you will no longer have access to the Groupmania social media app?</p>
+
+							<div>
+								<button className='btns' type='submit' onClick={(e) => handleSubmit(e)}>
+									Delete account
+								</button>
+							</div>
+						</form>
+					</Modal>
+					
+					</div>
+
 					<div className='messages'>
 						{/* <button>Create message</button> */}
 						{messages.map((message, index) => {
