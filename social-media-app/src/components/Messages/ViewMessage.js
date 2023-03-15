@@ -58,8 +58,6 @@ const ViewMessage = () => {
 		setMessage_id(id);
 	}, [id]);
 
-	
-
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`)
 			.then((response) => response.json())
@@ -83,8 +81,8 @@ const ViewMessage = () => {
 		console.log(`This is the userid ${user_id}`);
 		console.log(`hello the id is ${id}`);
 		console.log(`This is iscreator ${isCreator}`);
-		console.log(`This is the type of message user id ${typeof messageUserId}`)
-		console.log(`This is the type of user id ${typeof user_id}`)
+		console.log(`This is the type of message user id ${typeof messageUserId}`);
+		console.log(`This is the type of user id ${typeof user_id}`);
 	}, [isCreator, id, messageUserId, user_id]);
 
 	function handleDelete() {
@@ -94,7 +92,7 @@ const ViewMessage = () => {
 			.then((response) => response.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.error(error));
-		navigate("/dashboard");
+			navigate("/dashboard");
 	}
 
 	function handleSubmit(e) {
@@ -108,7 +106,7 @@ const ViewMessage = () => {
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
-		setModalOpen(false);
+			setModalOpen(false);
 	}
 
 	return (
