@@ -9,7 +9,6 @@ const CreateMessage = () => {
 
 	useEffect(() => {
 		const id = localStorage.getItem("userId");
-		// const userid= JSON.parse(id);
 		console.log(`this is userid ${id}`);
 		setUser_id(id);
 	}, []);

@@ -1,18 +1,13 @@
-import {useEffect} from "react";
-import {useAuth} from "../Utilities/auth";
-import {useNavigate} from "react-router";
+import  { useEffect, } from "react";
+
 
 const Logout = () => {
-	const navigate = useNavigate();
-	const auth = useAuth();
-
-	useEffect(() => {
-		auth.logout();
-		window.localStorage.clear();
-		navigate("/");
-	}, [auth, navigate]);
-    
-	return null;
+  
+    useEffect(() => {
+        window.localStorage.clear();
+        window.location = "/";
+    }, []);
+    return null;
 };
 
 export default Logout;

@@ -83,7 +83,10 @@ const ViewMessage = () => {
 		console.log(`This is iscreator ${isCreator}`);
 		console.log(`This is the type of message user id ${typeof messageUserId}`);
 		console.log(`This is the type of user id ${typeof user_id}`);
+		console.log(`This is the type of creator ${typeof isCreator}`);
+		console.log(`This is the type of admin ${typeof isAdmin}`);
 	}, [isCreator, id, messageUserId, user_id]);
+
 
 	function handleDelete() {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
@@ -115,17 +118,7 @@ const ViewMessage = () => {
 				<h2>{message.title}</h2>
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
-					{isAdmin ? (
-						<div>
-							<Link className='btns' to={`/updateMessage/${message.id}`}>
-								Edit
-							</Link>
-							<button className='btns new-button' onClick={handleDelete}>
-								Delete
-							</button>
-						</div>
-					) : null}
-					{isCreator ? (
+					{isAdmin || isCreator ? (
 						<div>
 							<Link className='btns' to={`/updateMessage/${message.id}`}>
 								Edit
