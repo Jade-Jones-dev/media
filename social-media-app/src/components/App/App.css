@@ -21,6 +21,8 @@
 	margin: 20px auto;
 }
 
+
+
 .btns {
 	text-decoration: none;
 }
@@ -98,6 +100,7 @@
 	align-items: center;
 	text-justify: center;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	padding-bottom: 20px;
 }
 
 .cardtext {
