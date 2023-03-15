@@ -90,7 +90,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.deleteUser = (req, res, next) => {
-	User.findOne({id: req.params.id})
+	User.findOne({where: {id: req.params.id}})
 		.then((user) => {
 			
 
