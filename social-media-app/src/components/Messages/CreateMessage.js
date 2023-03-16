@@ -35,6 +35,7 @@ const CreateMessage = () => {
 		navigate("/dashboard");
 	};
 	return (
+		<div className="form_pages">
 		<form className='updatemessage' onSubmit={handleSubmit}>
 			<h2>Create message</h2>
 			<label>
@@ -52,6 +53,7 @@ const CreateMessage = () => {
 				</button>
 			</div>
 		</form>
+		</div>
 	);
 };
 

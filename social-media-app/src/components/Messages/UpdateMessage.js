@@ -40,6 +40,7 @@ const UpdateMessage = () => {
 			
 	};
 	return (
+		<div className='form_pages'>
 		<form className='updatemessage' >
             <h2>Update message</h2>
 			<label>
@@ -57,6 +58,7 @@ const UpdateMessage = () => {
 				</button>
 			</div>
 		</form>
+		</div>
 	);
 }
 

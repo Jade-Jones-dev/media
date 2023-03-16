@@ -121,7 +121,7 @@ const ViewMessage = () => {
 
 	}
 	return (
-		<div className='viewMessage'>
+		<div className='form_pages'>
 			<div className='card'>
 				<h2>{message.title}</h2>
 				<div className='cardtext'>{message.body}</div>

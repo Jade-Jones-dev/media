@@ -57,7 +57,8 @@ const Login = () => {
 	};
 
 	return (
-		<form className='signup_form' onSubmit={handleSubmit}>
+		<div className="form_pages">
+			<form className='signup_form' onSubmit={handleSubmit}>
 			<h1>Login</h1>
 			<label>
 				<p>Email</p>
@@ -72,6 +73,8 @@ const Login = () => {
 				<button className='btn' type='submit'>Log in</button>
 			</div>
 		</form>
+		</div>
+		
 		
 	);
 };
