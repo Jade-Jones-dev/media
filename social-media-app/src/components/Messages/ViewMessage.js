@@ -28,8 +28,6 @@ const ViewMessage = () => {
 	const [messageUserId, setMessageUserId] = useState();
 	const [comments, setComments] = useState([]);
 	const [isCreator, setIsCreator] = useState(false);
-	// const [isCommentCreator, setIsCommentCreator] = useState(false)
-	// const [comment_User_Id, setComment_User_Id] = useState()
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
@@ -88,8 +86,6 @@ const ViewMessage = () => {
 		console.log(`This is the type of user id ${typeof user_id}`);
 		console.log(`This is the type of creator ${typeof isCreator}`);
 		console.log(`This is the type of admin ${typeof isAdmin}`);
-		// console.log(`This is the comment user id ${comment_User_Id}`)
-		// console.log(`This is the comment user id ${typeof comment_User_Id}`)
 	}, [isCreator, id, messageUserId, user_id]);
 
 	function handleDelete() {
@@ -114,9 +110,15 @@ const ViewMessage = () => {
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
 		setModalOpen(false);
-		// navigate('/dashboard')
 	}
 
+	function handleDeleteComment(){
+
+	}
+
+	function handleEditComment(){
+
+	}
 	return (
 		<div className='viewMessage'>
 			<div className='card'>
@@ -152,28 +154,26 @@ const ViewMessage = () => {
 						</form>
 					</Modal>
 				</div>
-				
 			</div>
 			<div className='comments'>
-					<h4> {comments.length} Comments</h4>
-					{comments.map((comment) => {
-						return (
-							<div className='comment' key={comment.id}>
-								<p>{comment.body}</p>
-								{isAdmin ? (
-									<div>
-										<Link className='btns' to={`/updateMessage/${message.id}`}>
-											Edit
-										</Link>
-										<button className='btns new-button' onClick={handleDelete}>
-											Delete
-										</button>
-									</div>
-								) : null}
-							</div>
-						);
-					})}
-				</div>
+				{comments.map((comment) => {
+					return (
+						<div className='comment' key={comment.id}>
+							<p>{comment.body}</p>
+							{(isAdmin || comment.user_id.toString() === user_id) && (
+								<div>
+									<button className='btns' onClick={() => handleEditComment(comment.id)}>
+										Edit
+									</button>
+									<button className='btns new-button' onClick={() => handleDeleteComment(comment.id)}>
+										Delete
+									</button>
+								</div>
+							)}
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
