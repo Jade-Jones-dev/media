@@ -98,7 +98,8 @@ const ViewMessage = () => {
 		navigate("/dashboard");
 	}
 
-	function handleSubmit(e) {
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	function handleSubmit() {
 		fetch("http://127.0.0.1:8080/api/comment", {
 			method: "post",
 			headers: {
