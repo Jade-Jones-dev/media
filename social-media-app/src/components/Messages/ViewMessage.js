@@ -42,7 +42,7 @@ const ViewMessage = () => {
 				// setComment_User_Id(data.user_id)
 			})
 			.catch((error) => console.error(error));
-	}, [id]);
+	}, [id, handleSubmit]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -107,7 +107,7 @@ const ViewMessage = () => {
 			body: JSON.stringify({message_id, body, user_id}),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => (data))
 			.catch((error) => console.log(error));
 		setModalOpen(false);
 	}
