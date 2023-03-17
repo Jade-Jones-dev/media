@@ -33,38 +33,6 @@ exports.update = (req, res) => {
 		});
 };
 
-// Delete a Mesage  with the specified id in the request- need to also add admin
-// exports.delete = (req, res, next) => {
-// 	Message.findOne({id: req.params.id})
-// 		.then((message) => {
-// 			if(message.userId !== req.auth.userId || req.auth.userId.isAdmin === false){
-// 				res.status(403).json({message: "Unauthorised"})
-// 				return;
-// 			}
-
-// 	const id = req.params.id;
-
-// 	Message.destroy({
-// 		where: {id: id},
-// 	})
-// 		.then((num) => {
-// 			if (num == 1) {
-// 				res.send({
-// 					message: "Message was deleted successfully!",
-// 				});
-// 			} else {
-// 				res.send({
-// 					message: `Cannot delete Message with id=${id}. Message was not found!`,
-// 				});
-// 			}
-// 		}))
-// 		.catch((err) => {
-// 			res.status(500).send({
-// 				message: "Error could not delete Message with id=" + id,
-// 			});
-// 		});
-// };
-
 exports.delete = (req, res, next) => {
 	Message.findOne({id: req.params.id})
 		.then((message) => {
@@ -134,14 +102,6 @@ exports.findAll = (req, res) => {
 // Completed-Find a single message with an id
 exports.findOne = async(req, res) => {
 	const id = req.params.id;
-
-// 	const message= await Message.findOne({ where: { id:id } });
-// if (message === null) {
-//   console.log('Not found!');
-// } else {
-//   console.log(message instanceof Message); // true
-//   console.log(message.title); // 'My Title'
-// }
 
 	Message.findByPk(id)
 		.then((data) => {

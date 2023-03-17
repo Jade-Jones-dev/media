@@ -127,14 +127,14 @@ const ViewMessage = () => {
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
 					{isAdmin || isCreator ? (
-						<div>
-							<Link className='btns' to={`/updateMessage/${message.id}`}>
+						<>
+							<Link className='btns btn-new' to={`/updateMessage/${message.id}`}>
 								Edit
 							</Link>
-							<button className='btns new-button' onClick={handleDelete}>
+							<button className='btns' onClick={handleDelete}>
 								Delete
 							</button>
-						</div>
+						</>
 					) : null}
 					<button className='btns'>Like</button>
 					<button className='btns' onClick={setModalOpen}>

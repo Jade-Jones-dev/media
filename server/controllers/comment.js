@@ -3,7 +3,7 @@ const comment = require("../models/comment");
 const Comment = db.comments;
 const Op = db.Sequelize.Op
 
-// Completed- Create a new Message
+// Create a new comment
 exports.createcomment = (req, res) => {
 
 	const comment = {
