@@ -22,3 +22,19 @@ exports.create = (req, res) => {
 			});
 		});
 };
+
+exports.findlikes = (req, res) => {
+	const message_id = req.query.message_id;
+  
+	Like.findAll({ where: { message_id: message_id } })
+	  .then((data) => {
+		res.send(data);
+	  })
+	  .catch((err) => {
+		res.status(500).send({
+		  message:
+			err.message || "Sorry there was an error while searching for likes",
+		});
+	  });
+  };
+

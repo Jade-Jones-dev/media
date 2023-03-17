@@ -15,6 +15,8 @@ const customStyles = {
 	},
 };
 
+// for getting likes /likes?message_id=17
+
 const ViewMessage = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
