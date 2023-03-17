@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message: err.message || "Sorry there was an error while creating the post",
+				message: err.message || "Sorry there was an error while creating the like",
 			});
 		});
 };
