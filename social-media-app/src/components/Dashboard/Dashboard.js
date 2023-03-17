@@ -103,7 +103,7 @@ export default function Dashboard() {
 							return (
 								<div className='message' key={message.id}>
 									<h3>{message.title}</h3>
-									<Link className='btn' to={`/viewMessage/${message.id}`}>
+									<Link className='btn message-btn' to={`/viewMessage/${message.id}`}>
 										view
 									</Link>
 								</div>
@@ -123,7 +123,7 @@ export default function Dashboard() {
 							return (
 								<div className='message' key={message.id}>
 									<h3>{message.title}</h3>
-									<Link className='btn' to={`/viewMessage/${message.id}`}>
+									<Link className='btn message-btn' to={`/viewMessage/${message.id}`}>
 										view
 									</Link>
 								</div>
