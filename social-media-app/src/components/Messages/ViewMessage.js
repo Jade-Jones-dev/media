@@ -29,6 +29,7 @@ const ViewMessage = () => {
 	const [message_id, setMessage_id] = useState();
 	const [messageUserId, setMessageUserId] = useState();
 	const [comments, setComments] = useState([]);
+	const [likes, setLikes] = useState([]);
 	const [isCreator, setIsCreator] = useState(false);
 
 	const [selectedCommentBody, setSelectedCommentBody] = useState("");
@@ -57,6 +58,20 @@ const ViewMessage = () => {
 			})
 			.catch((error) => console.error(error));
 	}, [id, handleSubmit]);
+
+	useEffect(() => {
+		fetch(`http://127.0.0.1:8080/api/likes?message_id=${id}`)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to retrieve likes");
+				}
+				return response.json();
+			})
+			.then((data) => {
+				setLikes(data);
+			})
+			.catch((error) => console.error(error));
+	}, [id, handleLike]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -167,6 +182,7 @@ const ViewMessage = () => {
 		<div className='form_pages'>
 			<div className='card'>
 				<h2>{message.title}</h2>
+				<p>{likes.length} likes</p>
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
 					{isAdmin || isCreator ? (
