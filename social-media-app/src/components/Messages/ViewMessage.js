@@ -31,6 +31,7 @@ const ViewMessage = () => {
 	const [comments, setComments] = useState([]);
 	const [likes, setLikes] = useState([]);
 	const [isCreator, setIsCreator] = useState(false);
+	
 
 	const [selectedCommentBody, setSelectedCommentBody] = useState("");
 
@@ -158,6 +159,7 @@ const ViewMessage = () => {
 		setModalOpen(false);
 	}
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function handleLike(){
 		const userId = parseInt(user_id);
         const messageId = parseInt(message_id);
