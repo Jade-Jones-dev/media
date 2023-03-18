@@ -26,7 +26,7 @@ export default function Dashboard() {
 	const [userId, setUserId] = useState();
 	const [messages, setMessages] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [viewed, setViewed] = useState(false)
+	const [views, setViews] = useState([])
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -52,12 +52,23 @@ export default function Dashboard() {
 
 	useEffect(() => {
 		fetchMessages();
+		fetchViews();
 	}, []);
 
 	function fetchMessages() {
 		fetch("http://127.0.0.1:8080/api/messages/")
 			.then((response) => response.json())
 			.then((data) => setMessages(data))
+			.catch((error) => console.error(error));
+	}
+
+	function fetchViews(){
+		fetch("http://127.0.0.1:8080/api/views/")
+			.then((response) => response.json())
+			.then((data) => {
+				setViews(data);
+				console.log(data)
+			})
 			.catch((error) => console.error(error));
 	}
 

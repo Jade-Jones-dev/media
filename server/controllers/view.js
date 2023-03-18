@@ -38,3 +38,16 @@ exports.findviews = (req, res) => {
 	  });
   };
 
+  exports.findAllViews = (req, res) => {
+	View.findAll()
+	  .then((data) => {
+		res.send(data);
+	  })
+	  .catch((err) => {
+		res.status(500).send({
+		  message:
+			err.message || "Sorry, there was an error while searching for views.",
+		});
+	  });
+  };
+
