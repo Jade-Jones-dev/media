@@ -72,7 +72,7 @@ const ViewMessage = () => {
 				setLikes(data);
 			})
 			.catch((error) => console.error(error));
-	}, [id, handleLike]);
+	}, [id]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -175,10 +175,6 @@ const ViewMessage = () => {
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
 	}
-
-	useEffect(() => {
-		console.log(`this is user id ${typeof user_id} this is message id ${typeof message_id}`)
-	},[user_id, message_id])
 
 	return (
 		<div className='form_pages'>

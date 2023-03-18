@@ -26,6 +26,7 @@ export default function Dashboard() {
 	const [userId, setUserId] = useState();
 	const [messages, setMessages] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [viewed, setViewed] = useState(false)
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -62,6 +63,22 @@ export default function Dashboard() {
 
 	function handleClick() {
 		navigate("/createMessage");
+	}
+
+	function handleView(id){
+		const user_id = parseInt(userId);
+        const messageId = parseInt(id);
+  
+		fetch("http://127.0.0.1:8080/api/views", {
+			method: "post",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({message_id: messageId, user_id: user_id}),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.log(error));
 	}
 
 	// const handlelogout = () => {
@@ -103,7 +120,7 @@ export default function Dashboard() {
 							return (
 								<div className='message' key={message.id}>
 									<h3>{message.title}</h3>
-									<Link className='btn message-btn' to={`/viewMessage/${message.id}`}>
+									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
 										view
 									</Link>
 								</div>
@@ -123,7 +140,7 @@ export default function Dashboard() {
 							return (
 								<div className='message' key={message.id}>
 									<h3>{message.title}</h3>
-									<Link className='btn message-btn' to={`/viewMessage/${message.id}`}>
+									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
 										view
 									</Link>
 								</div>
