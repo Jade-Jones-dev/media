@@ -4,7 +4,7 @@ const View = db.views;
 const Op = db.Sequelize.Op
 
 // Completed- Create 
-exports.create = (req, res) => {
+exports.createView = (req, res) => {
 
 	const view = {
 		message_id: req.body.message_id,
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message: err.message || "Sorry there was an error while creating the view",
+				message: err.message || "Sorry there was an error while creating the like",
 			});
 		});
 };

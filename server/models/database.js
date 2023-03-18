@@ -22,6 +22,7 @@ db.sequelize = sequelize;
 db.messages = require("./message.js")(sequelize, Sequelize);
 db.users = require("./user.js")(sequelize, Sequelize);
 db.likes = require('./like.js')(sequelize, Sequelize);
-db.comments = require('./comment.js')(sequelize, Sequelize)
+db.comments = require('./comment.js')(sequelize, Sequelize);
+db.views = require('./view.js')(sequelize, Sequelize)
 
 module.exports = db;
