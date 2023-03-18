@@ -89,17 +89,6 @@ const ViewMessage = () => {
 		}
 	}, [messageUserId, user_id]);
 
-	useEffect(() => {
-		console.log(`This is the message user id ${messageUserId}`);
-		console.log(`This is the userid ${user_id}`);
-		console.log(`hello the id is ${id}`);
-		console.log(`This is iscreator ${isCreator}`);
-		console.log(`This is the type of message user id ${typeof messageUserId}`);
-		console.log(`This is the type of user id ${typeof user_id}`);
-		console.log(`This is the type of creator ${typeof isCreator}`);
-		console.log(`This is the type of admin ${typeof isAdmin}`);
-	}, [isCreator, id, messageUserId, user_id, isAdmin]);
-
 	function handleDelete() {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "delete",
