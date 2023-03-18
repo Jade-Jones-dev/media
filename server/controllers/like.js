@@ -4,7 +4,7 @@ const Like = db.likes;
 const Op = db.Sequelize.Op
 
 // Completed- Create 
-exports.create = (req, res) => {
+exports.createLike = (req, res) => {
 
 	const like = {
 		message_id: req.body.message_id,

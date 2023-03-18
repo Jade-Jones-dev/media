@@ -34,12 +34,14 @@ const ViewMessage = () => {
 	const [selectedCommentBody, setSelectedCommentBody] = useState("");
 
 	const handleCommentClick = (commentId) => {
-	  fetch(`http://127.0.0.1:8080/api/comment/${commentId}`)
-		.then((response) => response.json())
-		.then((data) => {setSelectedCommentBody(data.body);
-			console.log(`This is data ${data.body}`)});
-		
-	  setModalOpen(true);
+		fetch(`http://127.0.0.1:8080/api/comment/${commentId}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setSelectedCommentBody(data.body);
+				console.log(`This is data ${data.body}`);
+			});
+
+		setModalOpen(true);
 	};
 
 	useEffect(() => {
@@ -118,20 +120,20 @@ const ViewMessage = () => {
 		fetch(`http://127.0.0.1:8080/api/comment/${commentId}`, {
 			method: "delete",
 		})
-		.then((response) => response.json())
-		.then((data) => console.log(data))
-		.catch((error) => console.error(error));
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error(error));
 	}
 
-	function handleEditComment(e,commentId ) {
-		e.preventDefault()
-	
+	function handleEditComment(e, commentId) {
+		e.preventDefault();
+
 		fetch(`http://127.0.0.1:8080/api/comment/${commentId}`, {
 			method: "put",
 			headers: {
 				"Content-type": "application/json",
 			},
-			 body: JSON.stringify({body:selectedCommentBody}),
+			body: JSON.stringify({body: selectedCommentBody}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
@@ -140,6 +142,26 @@ const ViewMessage = () => {
 			.catch((error) => console.log(error));
 		setModalOpen(false);
 	}
+
+	function handleLike(){
+		const userId = parseInt(user_id);
+        const messageId = parseInt(message_id);
+  
+		fetch("http://127.0.0.1:8080/api/likes", {
+			method: "post",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({message_id: messageId, user_id: userId}),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.log(error));
+	}
+
+	useEffect(() => {
+		console.log(`this is user id ${typeof user_id} this is message id ${typeof message_id}`)
+	},[user_id, message_id])
 
 	return (
 		<div className='form_pages'>
@@ -157,7 +179,7 @@ const ViewMessage = () => {
 							</button>
 						</>
 					) : null}
-					<button className='btns'>Like</button>
+					<button className='btns'onClick={()=>handleLike(user_id, message_id)}>Like </button>
 					<button className='btns' onClick={setModalOpen}>
 						Comment
 					</button>
