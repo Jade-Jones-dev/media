@@ -20,16 +20,27 @@ const customStyles = {
 const ViewMessage = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
+
 	const [message, setMessage] = useState({});
 	const [modalOpen, setModalOpen] = useState(false);
 	const [body, setBody] = useState("");
-
 	const [isAdmin, setIsAdmin] = useState();
 	const [user_id, setUser_id] = useState();
 	const [message_id, setMessage_id] = useState();
 	const [messageUserId, setMessageUserId] = useState();
 	const [comments, setComments] = useState([]);
 	const [isCreator, setIsCreator] = useState(false);
+
+	const [selectedCommentBody, setSelectedCommentBody] = useState("");
+
+	const handleCommentClick = (commentId) => {
+	  fetch(`http://127.0.0.1:8080/api/comment/${commentId}`)
+		.then((response) => response.json())
+		.then((data) => {setSelectedCommentBody(data.body);
+			console.log(`This is data ${data.body}`)});
+		
+	  setModalOpen(true);
+	};
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
@@ -41,7 +52,6 @@ const ViewMessage = () => {
 			})
 			.then((data) => {
 				setComments(data);
-				// setComment_User_Id(data.user_id)
 			})
 			.catch((error) => console.error(error));
 	}, [id, handleSubmit]);
@@ -88,7 +98,7 @@ const ViewMessage = () => {
 		console.log(`This is the type of user id ${typeof user_id}`);
 		console.log(`This is the type of creator ${typeof isCreator}`);
 		console.log(`This is the type of admin ${typeof isAdmin}`);
-	}, [isCreator, id, messageUserId, user_id]);
+	}, [isCreator, id, messageUserId, user_id, isAdmin]);
 
 	function handleDelete() {
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
@@ -127,6 +137,7 @@ const ViewMessage = () => {
 	function handleEditComment() {
 		setModalOpen(false);
 	}
+
 	return (
 		<div className='form_pages'>
 			<div className='card'>
@@ -170,19 +181,15 @@ const ViewMessage = () => {
 							<p>{comment.body}</p>
 							{(isAdmin || comment.user_id.toString() === user_id) && (
 								<div>
-									{/* <button className='btns' onClick={() => handleEditComment(comment.id)}>
-										Edit
-									</button> */}
-									<button className='btns' onClick={setModalOpen}>
+									<button className='btns' onClick={() => handleCommentClick(comment.id)}>
 										Edit
 									</button>
 									<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} style={customStyles}>
 										<form className='signup_form'>
 											<label>
 												<p>Edit Comment</p>
-												<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+												<textarea type='text' value={selectedCommentBody} onChange={(e) => setBody(e.target.value)} />
 											</label>
-
 											<div>
 												<button className='btns' type='submit' onClick={() => handleEditComment(comment.id)}>
 													Edit
