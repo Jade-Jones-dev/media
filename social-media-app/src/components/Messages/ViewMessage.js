@@ -123,7 +123,21 @@ const ViewMessage = () => {
 		.catch((error) => console.error(error));
 	}
 
-	function handleEditComment() {
+	function handleEditComment(e,commentId ) {
+		e.preventDefault()
+	
+		fetch(`http://127.0.0.1:8080/api/comment/${commentId}`, {
+			method: "put",
+			headers: {
+				"Content-type": "application/json",
+			},
+			 body: JSON.stringify({body:selectedCommentBody}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((error) => console.log(error));
 		setModalOpen(false);
 	}
 
@@ -151,7 +165,7 @@ const ViewMessage = () => {
 						<form className='signup_form'>
 							<label>
 								<p>Comment</p>
-								<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+								<textarea type='text' defaultalue={body} onChange={(e) => setBody(e.target.value)} />
 							</label>
 
 							<div>
@@ -177,10 +191,10 @@ const ViewMessage = () => {
 										<form className='signup_form'>
 											<label>
 												<p>Edit Comment</p>
-												<textarea type='text' value={selectedCommentBody} onChange={(e) => setBody(e.target.value)} />
+												<textarea type='text' defaultValue={selectedCommentBody} onChange={(e) => setSelectedCommentBody(e.target.value)} />
 											</label>
 											<div>
-												<button className='btns' type='submit' onClick={() => handleEditComment(comment.id)}>
+												<button className='btns' type='submit' onClick={(e) => handleEditComment(e, comment.id)}>
 													Edit
 												</button>
 											</div>
