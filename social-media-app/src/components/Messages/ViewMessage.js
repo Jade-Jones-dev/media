@@ -110,17 +110,22 @@ const ViewMessage = () => {
 			body: JSON.stringify({message_id, body, user_id}),
 		})
 			.then((res) => res.json())
-			.then((data) => (data))
+			.then((data) => data)
 			.catch((error) => console.log(error));
 		setModalOpen(false);
 	}
 
-	function handleDeleteComment(){
-
+	function handleDeleteComment(commentId) {
+		fetch(`http://127.0.0.1:8080/api/comment/${commentId}`, {
+			method: "delete",
+		})
+		.then((response) => response.json())
+		.then((data) => console.log(data))
+		.catch((error) => console.error(error));
 	}
 
-	function handleEditComment(){
-
+	function handleEditComment() {
+		setModalOpen(false);
 	}
 	return (
 		<div className='form_pages'>
@@ -165,9 +170,26 @@ const ViewMessage = () => {
 							<p>{comment.body}</p>
 							{(isAdmin || comment.user_id.toString() === user_id) && (
 								<div>
-									<button className='btns' onClick={() => handleEditComment(comment.id)}>
+									{/* <button className='btns' onClick={() => handleEditComment(comment.id)}>
+										Edit
+									</button> */}
+									<button className='btns' onClick={setModalOpen}>
 										Edit
 									</button>
+									<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} style={customStyles}>
+										<form className='signup_form'>
+											<label>
+												<p>Edit Comment</p>
+												<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
+											</label>
+
+											<div>
+												<button className='btns' type='submit' onClick={() => handleEditComment(comment.id)}>
+													Edit
+												</button>
+											</div>
+										</form>
+									</Modal>
 									<button className='btns new-button' onClick={() => handleDeleteComment(comment.id)}>
 										Delete
 									</button>

@@ -31,8 +31,6 @@ app.use(bodyParser.json())
 
 app.use(express.json());
 
-
-
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.use('/api/likes' , likeRoutes)
