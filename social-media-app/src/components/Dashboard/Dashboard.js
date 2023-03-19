@@ -102,15 +102,16 @@ export default function Dashboard() {
 		<div className='dashboard-wrapper'>
 			{!isAdmin && (
 				<>
-					<p>Welcome {name}</p>
-					<div>
-						<button className='btn' onClick={handleClick}>
+					
+					<div className="btn-wrapper">
+					{/* <p>Welcome {name}</p> */}
+						<button className='btn dashboard-btn' onClick={handleClick}>
 							Create message
 						</button>
 						{/* <button className='btn' onClick={handlelogout}>
 							Logout
 						</button> */}
-						<button className='btn' onClick={setModalOpen}>
+						<button className='btn dashboard-btn' onClick={setModalOpen}>
 							Delete account
 						</button>
 						<Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} style={customStyles}>

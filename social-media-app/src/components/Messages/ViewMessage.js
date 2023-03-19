@@ -15,8 +15,6 @@ const customStyles = {
 	},
 };
 
-// for getting likes /likes?message_id=17
-
 const ViewMessage = () => {
 	const navigate = useNavigate();
 	const {id} = useParams();
@@ -31,8 +29,6 @@ const ViewMessage = () => {
 	const [comments, setComments] = useState([]);
 	const [likes, setLikes] = useState([]);
 	const [isCreator, setIsCreator] = useState(false);
-	
-
 	const [selectedCommentBody, setSelectedCommentBody] = useState("");
 
 	const handleCommentClick = (commentId) => {
