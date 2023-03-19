@@ -172,7 +172,10 @@ const ViewMessage = () => {
 			body: JSON.stringify({message_id: messageId, user_id: userId}),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				console.log(data);
+				setLikes([...likes, data]); 
+			})
 			.catch((error) => console.log(error));
 	}
 

@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import "./Dashboard.css";
+import { FaCheck, FaEye } from "react-icons/fa";
 import {useNavigate, Link} from "react-router-dom";
 // import {useAuth} from "../Utilities/auth";
 import Modal from "react-modal";
@@ -128,11 +129,13 @@ export default function Dashboard() {
 					<div className='messages'>
 						{/* <button>Create message</button> */}
 						{messages.map((message, index) => {
+							const hasViewed = views.some((view) => view.message_id === message.id && view.user_id === parseInt(userId));
 							return (
 								<div className='message' key={message.id}>
+									 {hasViewed && <FaCheck className="btn message-btn check"/>}
 									<h3>{message.title}</h3>
 									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
-										view
+										<FaEye/>
 									</Link>
 								</div>
 							);
@@ -148,11 +151,13 @@ export default function Dashboard() {
 					<div className='messages'>
 						{/* <button>Create message</button> */}
 						{messages.map((message, index) => {
+							const hasViewed = views.some((view) => view.message_id === message.id && view.user_id === parseInt(userId));
 							return (
 								<div className='message' key={message.id}>
+									 {hasViewed && <FaCheck className="btn message-btn"/>}
 									<h3>{message.title}</h3>
 									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
-										view
+										<FaEye/>
 									</Link>
 								</div>
 							);

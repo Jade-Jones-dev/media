@@ -185,9 +185,12 @@ margin-right: -20px;
 
 .message .message-btn {
 	height:50px;
+	width:30px;
+	margin-left: 0;
 	margin-right: 0;
 	margin-top: 0;
 	display:flex;
+	justify-content: center;
 	align-items: center;
 }
 
