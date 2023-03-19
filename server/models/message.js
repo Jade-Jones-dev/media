@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
 	const Message = sequelize.define(
@@ -12,15 +12,13 @@ module.exports = (sequelize, Sequelize) => {
 			},
 			user_id: {
 				type: DataTypes.INTEGER.UNSIGNED,
-				allowNull: false
-			}
+				allowNull: false,
+			},
 		},
 		{
 			timestamps: false,
 		}
 	);
-
-	
 
 	return Message;
 };

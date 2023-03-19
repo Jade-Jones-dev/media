@@ -1,26 +1,25 @@
-const { DataTypes } = require('sequelize');
+const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
 	const Comment = sequelize.define(
 		"comment",
 		{
-            body: {
+			body: {
 				type: Sequelize.STRING,
 			},
 			user_id: {
 				type: DataTypes.INTEGER.UNSIGNED,
-				allowNull: false
+				allowNull: false,
 			},
-            message_id: {
+			message_id: {
 				type: DataTypes.INTEGER.UNSIGNED,
-				allowNull: false
+				allowNull: false,
 			},
-            
 		},
 		{
 			timestamps: false,
 		}
 	);
-    
+
 	return Comment;
 };

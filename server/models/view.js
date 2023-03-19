@@ -1,25 +1,24 @@
-const { DataTypes } = require('sequelize');
+const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
-	const View = sequelize.define( 
+	const View = sequelize.define(
 		"view",
 		{
-		  
 			user_id: {
 				type: DataTypes.INTEGER.UNSIGNED,
 				allowNull: false,
-				primaryKey: true
+				primaryKey: true,
 			},
-            message_id: {
+			message_id: {
 				type: DataTypes.INTEGER.UNSIGNED,
 				allowNull: false,
-			primaryKey:true			},
-            
+				primaryKey: true,
+			},
 		},
 		{
 			timestamps: false,
 		}
 	);
-    
+
 	return View;
 };
