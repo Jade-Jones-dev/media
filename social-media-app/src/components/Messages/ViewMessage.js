@@ -211,8 +211,7 @@ const ViewMessage = () => {
 						</form>
 					</Modal>
 				</div>
-			</div>
-			<div className='comments'>
+				<div className='comments'>
 				{comments.map((comment) => {
 					return (
 						<div className='comment' key={comment.id}>
@@ -244,6 +243,8 @@ const ViewMessage = () => {
 					);
 				})}
 			</div>
+			</div>
+			
 		</div>
 	);
 };
