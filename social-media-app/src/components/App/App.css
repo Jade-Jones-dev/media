@@ -236,6 +236,18 @@ margin-right: -20px;
 	.cardtext{
 		width: 300px;
 	}
+
+	.card .btns{
+		width: 80px;
+	}
+
+	.card .buttons{
+		width: 340px;
+	}
+
+	.card .btn-new{
+		width: 80px;
+	}
   }
 
   @media only screen and (min-width: 481px) and (max-width: 767px){
