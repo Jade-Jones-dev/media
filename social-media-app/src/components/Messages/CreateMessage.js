@@ -34,7 +34,7 @@ const CreateMessage = () => {
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
-		navigate("/home");
+		navigate("/dashboard");
 	};
 	return (
 		<div className="form_pages">

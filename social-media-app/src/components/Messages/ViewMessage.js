@@ -127,7 +127,7 @@ const ViewMessage = () => {
 			.then((response) => response.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.error(error));
-		navigate("/");
+		navigate("/dashboard");
 	}
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps

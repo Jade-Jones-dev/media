@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import "./Dashboard.css";
 import {FaCheck, FaEye} from "react-icons/fa";
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate, Link, useLocation} from "react-router-dom";
 // import {useAuth} from "../Utilities/auth";
 import Modal from "react-modal";
 const customStyles = {
@@ -20,6 +20,7 @@ const customStyles = {
 
 export default function Dashboard() {
 	// const auth = useAuth();
+	const location = useLocation();
 	const navigate = useNavigate();
 	const name = localStorage.getItem("name");
 
@@ -55,6 +56,13 @@ export default function Dashboard() {
 		fetchMessages();
 		fetchViews();
 	}, []);
+
+
+	useEffect(() => {
+		if (location.pathname === "/dashboard") {
+			fetchMessages();
+		}
+	}, [location.pathname, fetchMessages]);
 
 	const token = localStorage.getItem("token");
 	// eslint-disable-next-line react-hooks/exhaustive-deps
