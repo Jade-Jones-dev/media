@@ -85,8 +85,18 @@ const ViewMessage = () => {
 		setMessage_id(id);
 	}, [id]);
 
+	const token = localStorage.getItem('token')
+
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8080/api/messages/${id}`)
+		fetch(`http://127.0.0.1:8080/api/messages/${id}`,
+		{
+			method: "GET",
+			headers: {
+				"Content-type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		}
+		)
 			.then((response) => response.json())
 			.then((data) => {
 				setMessage(data);
@@ -117,7 +127,7 @@ const ViewMessage = () => {
 			.then((response) => response.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.error(error));
-		navigate("/dashboard");
+		navigate("/");
 	}
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps

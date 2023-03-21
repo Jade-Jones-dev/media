@@ -10,7 +10,7 @@ router.post("/", auth, messageCtrl.create);
 router.get("/", auth, messageCtrl.findAll);
 
 // Retrieve a single message with id
-router.get("/:id",  messageCtrl.findOne);
+router.get("/:id", auth, messageCtrl.findOne);
 
 // Update a message with id
 router.put("/:id", auth, messageCtrl.update);
