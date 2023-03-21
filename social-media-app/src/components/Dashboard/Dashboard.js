@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import "./Dashboard.css";
-import { FaCheck, FaEye } from "react-icons/fa";
+import {FaCheck, FaEye} from "react-icons/fa";
 import {useNavigate, Link} from "react-router-dom";
 // import {useAuth} from "../Utilities/auth";
 import Modal from "react-modal";
@@ -27,7 +27,7 @@ export default function Dashboard() {
 	const [userId, setUserId] = useState();
 	const [messages, setMessages] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [views, setViews] = useState([])
+	const [views, setViews] = useState([]);
 
 	useEffect(() => {
 		const adminValue = localStorage.getItem("isAdmin");
@@ -56,19 +56,28 @@ export default function Dashboard() {
 		fetchViews();
 	}, []);
 
+	const token = localStorage.getItem("token");
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function fetchMessages() {
-		fetch("http://127.0.0.1:8080/api/messages/")
+		fetch("http://127.0.0.1:8080/api/messages/", {
+			method: "GET",
+			headers: {
+				"Content-type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 			.then((response) => response.json())
 			.then((data) => setMessages(data))
 			.catch((error) => console.error(error));
 	}
-
-	function fetchViews(){
+	
+// eslint-disable-next-line react-hooks/exhaustive-deps
+	function fetchViews() {
 		fetch("http://127.0.0.1:8080/api/views/")
 			.then((response) => response.json())
 			.then((data) => {
 				setViews(data);
-				console.log(data)
+
 			})
 			.catch((error) => console.error(error));
 	}
@@ -77,10 +86,10 @@ export default function Dashboard() {
 		navigate("/createMessage");
 	}
 
-	function handleView(id){
+	function handleView(id) {
 		const user_id = parseInt(userId);
-        const messageId = parseInt(id);
-  
+		const messageId = parseInt(id);
+
 		fetch("http://127.0.0.1:8080/api/views", {
 			method: "post",
 			headers: {
@@ -102,9 +111,8 @@ export default function Dashboard() {
 		<div className='dashboard-wrapper'>
 			{!isAdmin && (
 				<>
-					
-					<div className="btn-wrapper">
-					{/* <p>Welcome {name}</p> */}
+					<div className='btn-wrapper'>
+						{/* <p>Welcome {name}</p> */}
 						<button className='btn dashboard-btn' onClick={handleClick}>
 							Create message
 						</button>
@@ -133,10 +141,10 @@ export default function Dashboard() {
 							const hasViewed = views.some((view) => view.message_id === message.id && view.user_id === parseInt(userId));
 							return (
 								<div className='message' key={message.id}>
-									 {hasViewed && <FaCheck className="btn message-btn check"/>}
+									{hasViewed && <FaCheck className='btn message-btn check' />}
 									<h3>{message.title}</h3>
 									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
-										<FaEye/>
+										<FaEye />
 									</Link>
 								</div>
 							);
@@ -155,10 +163,10 @@ export default function Dashboard() {
 							const hasViewed = views.some((view) => view.message_id === message.id && view.user_id === parseInt(userId));
 							return (
 								<div className='message' key={message.id}>
-									 {hasViewed && <FaCheck className="btn message-btn"/>}
+									{hasViewed && <FaCheck className='btn message-btn' />}
 									<h3>{message.title}</h3>
 									<Link className='btn message-btn' to={`/viewMessage/${message.id}`} onClick={() => handleView(message.id)}>
-										<FaEye/>
+										<FaEye />
 									</Link>
 								</div>
 							);

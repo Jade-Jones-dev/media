@@ -3,6 +3,13 @@ const message = require("../models/message");
 const Message = db.messages;
 const Op = db.Sequelize.Op;
 
+const comment = require("../models/comment");
+const Comment = db.comments;
+const view = require("../models/view");
+const View = db.views;
+const like = require("../models/like");
+const Like = db.likes;
+
 // Completed Update a message by the id in the request-
 exports.update = (req, res) => {
 	const id = req.params.id;
@@ -34,19 +41,24 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res, next) => {
-	Message.findOne({id: req.params.id})
-		.then((message) => {
-			// if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
-			// 	res.status(403).json({message: "Unauthorised"});
-			// 	return;
-			// }
-
-			Message.destroy({where: {id: req.params.id}})
-				.then(() => res.status(200).json({message: "Message has been deleted"}))
-				.catch((error) => res.status(400).json({error}));
-		})
-		.catch((error) => res.status(400).json({error}));
-};
+	Comment.destroy({ where: { message_id: req.params.id }})
+	  .then(() => {
+		return Like.destroy({ where: { message_id: req.params.id }});
+	  })
+	  .then(() => {
+		return View.destroy({ where: { message_id: req.params.id }});
+	  })
+	  .then(() => {
+		return Message.destroy({ where: { id: req.params.id }});
+	  })
+	  .then(() => {
+		res.status(200).json({ message: "Message has been deleted" });
+	  })
+	  .catch((error) => {
+		res.status(400).json({ error });
+	  });
+  };
+  
 
 // Completed- Create a new Message
 exports.create = (req, res) => {

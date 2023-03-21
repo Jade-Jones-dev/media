@@ -105,12 +105,13 @@ const ViewMessage = () => {
 
 	function handleDelete() {
 
-		// const token = localStorage.getItem('token');
+		const token = localStorage.getItem('token');
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
-			method: "delete",
-			// headers: {
-			// 	"Authorization": `Bearer ${token}` 
-			//   },
+			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": `Bearer ${token}` 
+			  },
 		})
 
 			.then((response) => response.json())

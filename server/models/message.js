@@ -34,5 +34,12 @@ module.exports = (sequelize, Sequelize) => {
 		});
 	  };
 
+	  Message.associate = (models) => {
+		Message.hasMany(models.Like, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
 	return Message;
 };

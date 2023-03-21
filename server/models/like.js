@@ -20,5 +20,12 @@ module.exports = (sequelize, Sequelize) => {
 		}
 	);
 
+	Like.associate = (models) => {
+		Like.belongsTo(models.Message, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
 	return Like;
 };
