@@ -54,7 +54,7 @@ const ViewMessage = () => {
 				setComments(data);
 			})
 			.catch((error) => console.error(error));
-	}, [id, handleSubmit]);
+	}, [id]);
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/likes?message_id=${id}`)
@@ -104,9 +104,15 @@ const ViewMessage = () => {
 	}, [messageUserId, user_id]);
 
 	function handleDelete() {
+
+		// const token = localStorage.getItem('token');
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "delete",
+			// headers: {
+			// 	"Authorization": `Bearer ${token}` 
+			//   },
 		})
+
 			.then((response) => response.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.error(error));

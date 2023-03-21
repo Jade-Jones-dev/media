@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const messageCtrl = require("../controllers/message.js");
+const auth = require('../middleware/auth');
 
 // Create a new message
-router.post("/", messageCtrl.create);
+router.post("/", auth, messageCtrl.create);
 
 // Retrieve all message
 router.get("/", messageCtrl.findAll);
@@ -12,9 +13,9 @@ router.get("/", messageCtrl.findAll);
 router.get("/:id", messageCtrl.findOne);
 
 // Update a message with id
-router.put("/:id", messageCtrl.update);
+router.put("/:id", auth, messageCtrl.update);
 
 // Delete a message with id
-router.delete("/:id", messageCtrl.delete);
+router.delete("/:id", auth, messageCtrl.delete);
 
 module.exports= router;

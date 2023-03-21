@@ -21,18 +21,20 @@ const CreateMessage = () => {
 			body,
 			title,
 		};
-
+		const token = localStorage.getItem('token');
 		fetch("http://127.0.0.1:8080/api/messages", {
+			
 			method: "post",
 			headers: {
 				"Content-type": "application/json",
+				"Authorization": `Bearer ${token}`
 			},
 			body: JSON.stringify(newMessage),
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
-		navigate("/dashboard");
+		navigate("/home");
 	};
 	return (
 		<div className="form_pages">

@@ -23,11 +23,14 @@ const UpdateMessage = () => {
 
 	const handleSubmit = (e) => {
 	e.preventDefault()
+
+	const token = localStorage.getItem('token')
 	
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "put",
 			headers: {
 				"Content-type": "application/json",
+				"Authorization": `Bearer ${token}`
 			},
 			 body: JSON.stringify({id, body, title}),
 		})

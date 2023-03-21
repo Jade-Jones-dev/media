@@ -50,19 +50,6 @@ exports.delete = (req, res, next) => {
 
 // Completed- Create a new Message
 exports.create = (req, res) => {
-	// if (!req.body.title) {
-	// 	res.status(400).send({
-	// 		message: "Your post title can not be empty!",
-	// 	});
-	// 	return;
-	// }
-
-	// if (!req.body.body) {
-	// 	res.status(400).send({
-	// 		message: "Your post content can not be empty!",
-	// 	});
-	// 	return;
-	// }
 
 	const message = {
 		title: req.body.title,
