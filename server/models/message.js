@@ -20,5 +20,19 @@ module.exports = (sequelize, Sequelize) => {
 		}
 	);
 
+	Message.associate = (models) => {
+		Message.hasMany(models.Comment, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
+	  Message.associate = (models) => {
+		Message.hasMany(models.View, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
 	return Message;
 };

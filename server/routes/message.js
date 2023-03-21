@@ -16,6 +16,6 @@ router.get("/:id", messageCtrl.findOne);
 router.put("/:id", auth, messageCtrl.update);
 
 // Delete a message with id
-router.delete("/:id", auth, messageCtrl.delete);
+router.delete("/:id", messageCtrl.delete);
 
 module.exports= router;

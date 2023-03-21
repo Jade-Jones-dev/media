@@ -21,5 +21,12 @@ module.exports = (sequelize, Sequelize) => {
 		}
 	);
 
+	Comment.associate = (models) => {
+		Comment.belongsTo(models.Message, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
 	return Comment;
 };

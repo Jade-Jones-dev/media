@@ -20,5 +20,12 @@ module.exports = (sequelize, Sequelize) => {
 		}
 	);
 
+	View.associate = (models) => {
+		View.belongsTo(models.Message, {
+		  foreignKey: "message_id",
+		  onDelete: "CASCADE",
+		});
+	  };
+
 	return View;
 };
