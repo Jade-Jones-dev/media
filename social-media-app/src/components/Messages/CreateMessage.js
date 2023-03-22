@@ -48,7 +48,6 @@ const CreateMessage = () => {
 				<p>Message</p>
 				<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
 			</label>
-
 			<div>
 				<button type='submit' className='btn'>
 					Post

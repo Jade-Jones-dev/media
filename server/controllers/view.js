@@ -3,7 +3,7 @@ const view = require("../models/view");
 const View = db.views;
 const Op = db.Sequelize.Op;
 
-// Completed- Create
+
 exports.createView = (req, res) => {
 	const view = {
 		message_id: req.body.message_id,
@@ -16,7 +16,7 @@ exports.createView = (req, res) => {
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message: err.message || "Sorry there was an error while creating the like",
+				message: err.message || "Sorry there was an error while creating the view",
 			});
 		});
 };
@@ -30,7 +30,7 @@ exports.findviews = (req, res) => {
 		})
 		.catch((err) => {
 			res.status(500).send({
-				message: err.message || "Sorry there was an error while searching for likes",
+				message: err.message || "Sorry there was an error while searching for views",
 			});
 		});
 };

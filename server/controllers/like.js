@@ -3,7 +3,7 @@ const like = require("../models/like");
 const Like = db.likes;
 const Op = db.Sequelize.Op
 
-// Completed- Create 
+
 exports.createLike = (req, res) => {
 
 	const like = {

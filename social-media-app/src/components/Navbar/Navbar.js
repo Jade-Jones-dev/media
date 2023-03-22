@@ -32,32 +32,16 @@ const NavBar = () => {
 			{!user && (
 				<>
 					<NavLink to='/login' className='navlink'><p className="desktop">Login</p><AiOutlineLogin className="mobile"/></NavLink>
-					<NavLink to='/signup' className='navlink'><p className="desktop">Login</p><MdAssignmentAdd className="mobile"/></NavLink>
+					<NavLink to='/signup' className='navlink'><p className="desktop">Signup</p><MdAssignmentAdd className="mobile"/></NavLink>
 				</>
 			)}
 			{user && (
 				<>
 					<NavLink to='/dashboard' className='navlink'><p className="desktop">Dashboard</p><FaList className="mobile"/></NavLink>
-          <NavLink to='/logout' className='navlink'> <p className="desktop">Logout</p><AiOutlineLogout className="mobile"/></NavLink>
+          			<NavLink to='/logout' className='navlink'> <p className="desktop">Logout</p><AiOutlineLogout className="mobile"/></NavLink>
 				</>
 			)}
-			{/* {isAdmin && (
-				<>
-				<NavLink to='/admindashboard' className='navlink'>admindashboard</NavLink>
-				<NavLink to='/logout' className='navlink'> Logout</NavLink>
-				</>
-			)} */}
 		</nav>
-
-		// <nav className='navbar'>
-		//         <NavLink className='navlink' to='/'>Home</NavLink>
-
-		//             <>
-		//                 <NavLink className='navlink'  to='/login'>Login</NavLink>
-		//                 <NavLink className='navlink'  to='/signup'>Signup</NavLink>
-		//             </>
-
-		//     </nav>
 	);
 };
 

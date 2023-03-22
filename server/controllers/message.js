@@ -5,19 +5,16 @@ const Op = db.Sequelize.Op;
 
 const comment = require("../models/comment");
 const Comment = db.comments;
+
 const view = require("../models/view");
 const View = db.views;
+
 const like = require("../models/like");
 const Like = db.likes;
 
-// Completed Update a message by the id in the request-
+
 exports.update = (req, res) => {
 	const id = req.params.id;
-
-	// if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
-	// 	res.status(403).json({message: "Unauthorised"});
-	// 	return;
-	// }
 
 	Message.update(req.body, {
 		where: {id: id},
@@ -59,15 +56,12 @@ exports.delete = (req, res, next) => {
 	  });
   };
   
-
-// Completed- Create a new Message
 exports.create = (req, res) => {
 
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
 		user_id: req.body.user_id,
-		// user_id: req.body.id,
 	};
 
 	Message.create(message)
@@ -80,8 +74,6 @@ exports.create = (req, res) => {
 			});
 		});
 };
-
-//  Completed- find message with query
 
 exports.findAll = (req, res) => {
 	const title = req.query.title;
@@ -98,7 +90,6 @@ exports.findAll = (req, res) => {
 		});
 };
 
-// Completed-Find a single message with an id
 exports.findOne = async(req, res) => {
 	const id = req.params.id;
 
