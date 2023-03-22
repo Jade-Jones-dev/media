@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from "react";
+import { FaHome, FaList } from 'react-icons/fa';
+import { AiOutlineLogin, AiOutlineLogout} from "react-icons/ai";
+import { MdAssignmentAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import {NavLink} from "react-router-dom";
 import "./Navbar.css";
@@ -25,17 +28,17 @@ const NavBar = () => {
 
 	return (
 		<nav className='navbar'>
-			<NavLink to='/' className='navlink'>Home</NavLink>
+			<NavLink to='/' className='navlink'><p className="desktop">Home</p><FaHome className="mobile"/></NavLink>
 			{!user && (
 				<>
-					<NavLink to='/login' className='navlink'>Login</NavLink>
-					<NavLink to='/signup' className='navlink'>Signup</NavLink>
+					<NavLink to='/login' className='navlink'><p className="desktop">Login</p><AiOutlineLogin className="mobile"/></NavLink>
+					<NavLink to='/signup' className='navlink'><p className="desktop">Login</p><MdAssignmentAdd className="mobile"/></NavLink>
 				</>
 			)}
 			{user && (
 				<>
-					<NavLink to='/dashboard' className='navlink'>Dashboard</NavLink>
-          <NavLink to='/logout' className='navlink'> Logout</NavLink>
+					<NavLink to='/dashboard' className='navlink'><p className="desktop">Dashboard</p><FaList className="mobile"/></NavLink>
+          <NavLink to='/logout' className='navlink'> <p className="desktop">Logout</p><AiOutlineLogout className="mobile"/></NavLink>
 				</>
 			)}
 			{/* {isAdmin && (
