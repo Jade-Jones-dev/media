@@ -14,14 +14,7 @@ margin-right: -20px;
 }
 
 
-.form_pages {
-	margin-top: 100px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width:100%;
-	justify-content: center;
-}
+
 
 .btn {
 	padding: 10px;
@@ -33,18 +26,13 @@ margin-right: -20px;
 	margin: 20px auto;
 }
 
-
-.message {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.btn-new{
+	display:inline-block;
 	justify-content: center;
-}
-
-.dashboard-wrapper {
-	padding: 0 20px;
-	height: calc(100vh-100px);
-	margin: 20px;
+	margin:auto;
+	margin:10px;
+	width:60px;
+	/* flex-direction: row; */
 }
 
 .btn {
@@ -70,18 +58,34 @@ margin-right: -20px;
 	text-decoration: none;
 }
 
-.btn-new{
-	display:inline-block;
-	justify-content: center;
-	margin:auto;
-	margin:10px;
-	width:60px;
-	/* flex-direction: row; */
-}
-
 .new-button{
 	margin-left:10px;
 }
+
+.btn {
+	margin-top: 20px;
+}
+
+.form_pages {
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width:100%;
+	justify-content: center;
+}
+
+
+
+.dashboard-wrapper {
+	padding: 0 20px;
+	height: calc(100vh-100px);
+	margin: 20px;
+}
+
+
+
+
 
 .messages {
 	display: flex;
@@ -90,6 +94,13 @@ margin-right: -20px;
 	align-items: center;
 	margin: auto;
 	white-space: nowrap;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .updatemessage {
@@ -144,9 +155,7 @@ margin-right: -20px;
 	margin-bottom: -5px;
 }
 
-.btn {
-	margin-top: 20px;
-}
+
 
 .messages {
 	/* height: calc(100vh - 300px); */
