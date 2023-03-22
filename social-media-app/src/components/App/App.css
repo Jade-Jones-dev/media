@@ -204,11 +204,35 @@ margin-right: -20px;
 	justify-content: center;
 }
 
+.homelogo{
+	width: 500px;
+	margin:auto;
+	
+}
+
+.home-wrapper{
+	display:flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+}
+
+.home-wrapper p{
+	font-size: 48px;
+	font-weight: 900;
+	color: #091f43;
+	margin: 0;
+}
+
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
 
 	.desktop{
 		display: none;
+	}
+
+	.home-wrapper p {
+		font-size: 30px;
 	}
 
 	.updatemessage{
@@ -270,6 +294,9 @@ margin-right: -20px;
 		width: 80px;
 	}
 
+	.homelogo{
+		width:90vw
+	}
 	
   }
 
