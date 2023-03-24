@@ -62,7 +62,7 @@ export default function Dashboard() {
 		if (location.pathname === "/dashboard") {
 			fetchMessages();
 		}
-	}, [location.pathname]);
+	}, [location.pathname, fetchMessages]);
 
 	const token = localStorage.getItem("token");
 	// eslint-disable-next-line react-hooks/exhaustive-deps
