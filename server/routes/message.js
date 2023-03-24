@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const messageCtrl = require("../controllers/message.js");
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config')
+
 
 // Create a new message
-router.post("/", auth, messageCtrl.create);
+router.post("/", auth, multer, messageCtrl.create);
 
 // Retrieve all message
 router.get("/", auth, messageCtrl.findAll);

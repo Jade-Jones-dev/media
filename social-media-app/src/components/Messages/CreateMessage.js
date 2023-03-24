@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {json, useNavigate} from "react-router-dom";
 
 const CreateMessage = () => {
 	const navigate = useNavigate();
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [user_id, setUser_id] = useState();
+	const [file, setFile] = useState(null);
+	const [imageUrl, setImageUrl] = useState(null);
+	
 
 	useEffect(() => {
 		const id = localStorage.getItem("userId");
@@ -13,29 +16,39 @@ const CreateMessage = () => {
 		setUser_id(id);
 	}, []);
 
+	
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const formData = new FormData();
+		formData.append("image", file); // Add the image file to the form data
+		formData.append("user_id", user_id);
+		formData.append("title", title);
+		formData.append("body", body);
 
-		const newMessage = {
-			user_id,
-			body,
-			title,
-		};
+		// const newMessage = {
+		// 	user_id,
+		// 	body,
+		// 	title,
+		// 	"imageUrl": file
+
+		// };
 		const token = localStorage.getItem('token');
 		fetch("http://127.0.0.1:8080/api/messages", {
 			
 			method: "post",
 			headers: {
-				"Content-type": "application/json",
+			
 				"Authorization": `Bearer ${token}`
 			},
-			body: JSON.stringify(newMessage),
+			body:formData
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.log(error));
 		navigate("/dashboard");
 	};
+
 	return (
 		<div className="form_pages">
 		<form className='updatemessage' onSubmit={handleSubmit}>
@@ -48,6 +61,11 @@ const CreateMessage = () => {
 				<p>Message</p>
 				<textarea type='text' value={body} onChange={(e) => setBody(e.target.value)} />
 			</label>
+			<label>
+				<p>Image</p>
+				<input type="file" onChange={(e) => setFile(e.target.files[0])} />
+			</label>
+			
 			<div>
 				<button type='submit' className='btn'>
 					Post

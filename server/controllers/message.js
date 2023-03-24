@@ -57,8 +57,9 @@ exports.delete = (req, res, next) => {
 	  });
   };
   
-exports.create = (req, res) => {
+  exports.create = (req, res) => {
 	const url = req.protocol + "://" + req.get("host");
+	
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
