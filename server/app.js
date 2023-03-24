@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const bodyParser = require('body-parser')
+const path = require("path");
 dotenv.config();
 
 const userRoutes = require("./routes/user");
@@ -29,6 +30,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+app.use("/images", express.static(path.join(__dirname, "images"))); 
 
 app.use(express.json());
 

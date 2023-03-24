@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
 				type: DataTypes.INTEGER.UNSIGNED,
 				allowNull: false,
 			},
+			imageUrl: {
+				type: Sequelize.STRING,
+			}
 		},
 		{
 			timestamps: false,

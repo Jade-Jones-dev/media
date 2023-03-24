@@ -10,6 +10,8 @@ exports.createView = (req, res) => {
 		user_id: req.body.user_id,
 	};
 
+	
+
 	View.create(view)
 		.then((data) => {
 			res.send(data);

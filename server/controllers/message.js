@@ -2,6 +2,7 @@ const db = require("../models/database");
 const message = require("../models/message");
 const Message = db.messages;
 const Op = db.Sequelize.Op;
+const fs = require('fs');
 
 const comment = require("../models/comment");
 const Comment = db.comments;
@@ -57,11 +58,12 @@ exports.delete = (req, res, next) => {
   };
   
 exports.create = (req, res) => {
-
+	const url = req.protocol + "://" + req.get("host");
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
 		user_id: req.body.user_id,
+		imageUrl: url + "/images/" + req.file.filename,
 	};
 
 	Message.create(message)
