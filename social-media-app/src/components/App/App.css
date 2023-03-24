@@ -14,8 +14,6 @@ margin-right: -20px;
 }
 
 
-
-
 .btn {
 	padding: 10px;
 }
@@ -44,6 +42,7 @@ margin-right: -20px;
 	color: white;
 	border: none;
 	text-decoration: none;
+	margin-top: 20px;
 }
 
 .btns {
@@ -62,10 +61,6 @@ margin-right: -20px;
 	margin-left:10px;
 }
 
-.btn {
-	margin-top: 20px;
-}
-
 .form_pages {
 	margin-top: 100px;
 	display: flex;
@@ -75,17 +70,11 @@ margin-right: -20px;
 	justify-content: center;
 }
 
-
-
 .dashboard-wrapper {
 	padding: 0 20px;
 	height: calc(100vh-100px);
 	margin: 20px;
 }
-
-
-
-
 
 .messages {
 	display: flex;
@@ -132,8 +121,7 @@ margin-right: -20px;
 	text-justify: center;
 }
 
-.signup_form {
-	
+.signup_form {	
 	width: 300px;
 	padding: 20px 30px;
 	border-radius: 5px;
@@ -155,10 +143,7 @@ margin-right: -20px;
 	margin-bottom: -5px;
 }
 
-
-
 .messages {
-	/* height: calc(100vh - 300px); */
 	display: grid;
 	width: 90vw;
 	gap: 1em;
@@ -215,8 +200,7 @@ margin-right: -20px;
 
 .homelogo{
 	width: 500px;
-	margin:auto;
-	
+	margin:auto;	
 }
 
 .home-wrapper{
@@ -262,10 +246,6 @@ margin-right: -20px;
 		align-content: center;
 	}
 
-	/* .navbar{
-		display: none;
-	} */
-
 	.dashboard-wrapper{
 		margin:0;
 	}
@@ -309,7 +289,7 @@ margin-right: -20px;
 	
   }
 
-  @media only screen and (min-width: 481px) {
+@media only screen and (min-width: 481px) {
 .mobile{
 	display:none
 }
