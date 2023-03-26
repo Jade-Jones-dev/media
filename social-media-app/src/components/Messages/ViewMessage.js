@@ -197,6 +197,7 @@ const ViewMessage = () => {
 			<div className='card'>
 				<h2>{message.title}</h2>
 				<p>{likes.length} likes</p>
+				<img src={message.imageUrl} alt='message'/>
 				<div className='cardtext'>{message.body}</div>
 				<div className='buttons'>
 					{isAdmin || isCreator ? (
