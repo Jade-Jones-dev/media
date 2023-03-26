@@ -98,16 +98,19 @@ export default function Dashboard() {
 		const user_id = parseInt(userId);
 		const messageId = parseInt(id);
 
-		fetch("http://127.0.0.1:8080/api/views", {
-			method: "post",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({message_id: messageId, user_id: user_id}),
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
-			.catch((error) => console.log(error));
+		if (!views.some(view => view.message_id === messageId && view.user_id === user_id)){
+			fetch("http://127.0.0.1:8080/api/views", {
+				method: "post",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify({message_id: messageId, user_id: user_id}),
+			})
+				.then((res) => res.json())
+				.then((data) => console.log(data))
+				.catch((error) => console.log(error));
+		}
+		
 	}
 
 	// const handlelogout = () => {
