@@ -150,7 +150,11 @@ const ViewMessage = () => {
 			method: "delete",
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data))
+			.then((data) => {
+				console.log(data);
+				const updatedComments = comments.filter(comment => comment.id !== commentId);
+				setComments(updatedComments);
+			})
 			.catch((error) => console.error(error));
 	}
 
@@ -167,9 +171,9 @@ const ViewMessage = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-			})
+				setModalOpen(false);
+			  })
 			.catch((error) => console.log(error));
-		setModalOpen(false);
 	}
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
