@@ -177,19 +177,21 @@ const ViewMessage = () => {
 		const userId = parseInt(user_id);
         const messageId = parseInt(message_id);
   
-		fetch("http://127.0.0.1:8080/api/likes", {
-			method: "post",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({message_id: messageId, user_id: userId}),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setLikes([...likes, data]); 
+			fetch("http://127.0.0.1:8080/api/likes", {
+				method: "post",
+				headers: {
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify({message_id: messageId, user_id: userId}),
 			})
-			.catch((error) => console.log(error));
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					setLikes([...likes, data]); 
+				})
+				.catch((error) => console.log(error));
+		
+		
 	}
 
 	return (
