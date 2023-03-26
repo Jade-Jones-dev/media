@@ -7,6 +7,7 @@ const UpdateMessage = () => {
 	const [message, setMessage] = useState({});
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
+	const [file, setFile] = useState(null);
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -28,16 +29,20 @@ const UpdateMessage = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const formData = new FormData();
+		formData.append("image", file); 
+		formData.append("id", id);
+		formData.append("title", title);
+		formData.append("body", body);
 
 		const token = localStorage.getItem("token");
 
 		fetch(`http://127.0.0.1:8080/api/messages/${id}`, {
 			method: "put",
 			headers: {
-				"Content-type": "application/json",
 				Authorization: `Bearer ${token}`,
 			},
-			body: JSON.stringify({id, body, title}),
+			body: formData
 		})
 			.then((res) => res.json())
 			.then((data) => {
@@ -58,7 +63,10 @@ const UpdateMessage = () => {
 					<p>Message</p>
 					<textarea type='text' defaultValue={body} onChange={(event) => setBody(event.target.value)} />
 				</label>
-
+				<label>
+				<p>Image</p>
+				<input type="file" onChange={(e) => setFile(e.target.files[0])} />
+			</label>
 				<div>
 					<button type='submit' onClick={handleSubmit} className='btn'>
 						Post

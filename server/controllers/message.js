@@ -14,27 +14,63 @@ const like = require("../models/like");
 const Like = db.likes;
 
 
+// exports.update = (req, res) => {
+// 	const id = req.params.id;
+
+// 	Message.update(req.body, {
+// 		where: {id: id},
+// 	})
+// 		.then((num) => {
+// 			if (num == 1) {
+// 				res.send({
+// 					message: "Message was updated successfully.",
+// 				});
+// 			} else {
+// 				res.send({
+// 					message: `Cannot update Message with id=${id}. Maybe Message was not found or req.body is empty!`,
+// 				});
+// 			}
+// 		})
+// 		.catch((err) => {
+// 			res.status(500).send({
+// 				message: "Error updating Message with id=" + id,
+// 			});
+// 		});
+// };
+
 exports.update = (req, res) => {
 	const id = req.params.id;
 
-	Message.update(req.body, {
-		where: {id: id},
-	})
-		.then((num) => {
-			if (num == 1) {
-				res.send({
-					message: "Message was updated successfully.",
+	Message.findOne({ where: { id: id } })
+		.then((message) => {
+			const oldImageUrl = message.imageUrl;
+
+			Message.update(req.body, {
+				where: { id: id },
+			})
+				.then((num) => {
+					if (num == 1) {
+						if (req.body.imageUrl && req.body.imageUrl !== oldImageUrl) {
+							const filename = oldImageUrl.split("/images/")[1];
+							fs.unlink("images/" + filename, () => {});
+						}
+						res.send({
+							message: "Message was updated successfully.",
+						});
+					} else {
+						res.send({
+							message: `Cannot update Message with id=${id}. Maybe Message was not found or req.body is empty!`,
+						});
+					}
+				})
+				.catch((err) => {
+					res.status(500).send({
+						message: "Error updating Message with id=" + id,
+					});
 				});
-			} else {
-				res.send({
-					message: `Cannot update Message with id=${id}. Maybe Message was not found or req.body is empty!`,
-				});
-			}
 		})
-		.catch((err) => {
-			res.status(500).send({
-				message: "Error updating Message with id=" + id,
-			});
+		.catch((error) => {
+			res.status(400).json({ error });
 		});
 };
 

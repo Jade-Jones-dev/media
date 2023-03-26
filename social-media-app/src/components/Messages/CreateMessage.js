@@ -9,30 +9,20 @@ const CreateMessage = () => {
 	const [file, setFile] = useState(null);
 	const [imageUrl, setImageUrl] = useState(null);
 	
-
 	useEffect(() => {
 		const id = localStorage.getItem("userId");
 		console.log(`this is userid ${id}`);
 		setUser_id(id);
 	}, []);
 
-	
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData();
-		formData.append("image", file); // Add the image file to the form data
+		formData.append("image", file); 
 		formData.append("user_id", user_id);
 		formData.append("title", title);
 		formData.append("body", body);
 
-		// const newMessage = {
-		// 	user_id,
-		// 	body,
-		// 	title,
-		// 	"imageUrl": file
-
-		// };
 		const token = localStorage.getItem('token');
 		fetch("http://127.0.0.1:8080/api/messages", {
 			
@@ -64,8 +54,7 @@ const CreateMessage = () => {
 			<label>
 				<p>Image</p>
 				<input type="file" onChange={(e) => setFile(e.target.files[0])} />
-			</label>
-			
+			</label>		
 			<div>
 				<button type='submit' className='btn'>
 					Post
