@@ -15,7 +15,7 @@ router.get("/", auth, messageCtrl.findAll);
 router.get("/:id", auth, messageCtrl.findOne);
 
 // Update a message with id
-router.put("/:id", auth, messageCtrl.update);
+router.put("/:id", auth, multer, messageCtrl.update);
 
 // Delete a message with id
 router.delete("/:id", auth, messageCtrl.delete);

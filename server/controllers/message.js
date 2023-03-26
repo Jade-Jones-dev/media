@@ -39,18 +39,27 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res, next) => {
-	Comment.destroy({ where: { message_id: req.params.id }})
-	  .then(() => {
-		return Like.destroy({ where: { message_id: req.params.id }});
-	  })
-	  .then(() => {
-		return View.destroy({ where: { message_id: req.params.id }});
-	  })
-	  .then(() => {
-		return Message.destroy({ where: { id: req.params.id }});
-	  })
-	  .then(() => {
-		res.status(200).json({ message: "Message has been deleted" });
+	Message.findOne({ where: { id: req.params.id } })
+	  .then((message) => {
+		const filename = message.imageUrl.split("/images/")[1];
+		fs.unlink("images/" + filename, () => {
+		  Comment.destroy({ where: { message_id: req.params.id } })
+			.then(() => {
+			  return Like.destroy({ where: { message_id: req.params.id } });
+			})
+			.then(() => {
+			  return View.destroy({ where: { message_id: req.params.id } });
+			})
+			.then(() => {
+			  return Message.destroy({ where: { id: req.params.id } });
+			})
+			.then(() => {
+			  res.status(200).json({ message: "Message has been deleted" });
+			})
+			.catch((error) => {
+			  res.status(400).json({ error });
+			});
+		});
 	  })
 	  .catch((error) => {
 		res.status(400).json({ error });
