@@ -44,12 +44,9 @@ const ViewMessage = () => {
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("Failed to retrieve comments");
-				}
-				return response.json();
-			})
+			.then((response) => 
+				response.json()
+			)
 			.then((data) => {
 				setComments(data);
 			})
@@ -103,7 +100,7 @@ const ViewMessage = () => {
 				setMessageUserId(data.user_id.toString());
 			})
 			.catch((error) => console.error(error));
-	}, [id]);
+	}, [id, token]);
 
 	useEffect(() => {
 		if (messageUserId === user_id) {
