@@ -43,6 +43,10 @@ const ViewMessage = () => {
 	};
 
 	useEffect(() => {
+		handleFetchComments()
+	}, [id, handleFetchComments]);
+
+	function handleFetchComments(){
 		fetch(`http://127.0.0.1:8080/api/comment?message_id=${id}`)
 			.then((response) => 
 				response.json()
@@ -51,7 +55,7 @@ const ViewMessage = () => {
 				setComments(data);
 			})
 			.catch((error) => console.error(error));
-	}, [id]);
+	}
 
 	useEffect(() => {
 		fetch(`http://127.0.0.1:8080/api/likes?message_id=${id}`)
@@ -169,6 +173,7 @@ const ViewMessage = () => {
 			.then((data) => {
 				console.log(data);
 				setModalOpen(false);
+				handleFetchComments()
 			  })
 			.catch((error) => console.log(error));
 	}
