@@ -4,7 +4,6 @@ const messageCtrl = require("../controllers/message.js");
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config')
 
-
 // Create a new message
 router.post("/", auth, multer, messageCtrl.create);
 
